@@ -1,0 +1,52 @@
+body {
+    height: 100%;
+    margin: 0;
+
+}
+
+#header-wrapper{
+    height: 45px;
+    background-color: rgb(220, 233, 243);
+}
+
+#main-content {
+    display: flex;
+    height: calc(100vh - 30px);
+}
+
+#side-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    background-color:;
+    border-right: solid 1px rgb(189, 203, 214);
+    box-shadow: 1px 1px 1px aliceblue;
+
+}
+#projects-title{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    
+}
+#projects-wrapper{
+
+}
+
+#list-space {
+    display: flex;
+    flex-grow: 5;
+}
+
+#projects-title h2 {
+    width: 80%;
+    text-align: center;
+
+}
+
+.add {
+    font-size: 30px;
+    line-height: 0;
+}
+
