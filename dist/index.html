@@ -5,6 +5,8 @@
   <title>To-do List</title>
   <meta name="description" content="A todo list with a clean UI">
   <meta name="author" content="Ryan Maloney">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600&family=Roboto:wght@100;300;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,19 +20,36 @@
           <h2>Projects</h2>
            <p class="add">+</p>
         </div>
+        <div id="projects-wrapper">
+          <div class="project"> 
+            <h3>Today</h3>
+            <p>25 items</p>
+          </div>
+          <div class="project"> 
+            <h3>This week</h3>
+            <p>25 items</p>
+          </div>
 
-      
-      
-        <div id="projects-wrapper"></div>
+        </div>
 
          
     
       </div>
-
-    
-
-    <div id = "list-space">
-    </div>
+      <div id = "list-space">
+        <div id="current-project-title">
+          <h2>Today's tasks</h2>
+        </div>
+        <div id="current-list">
+            <div class=list-item>
+                <p>Do Something</p>
+            </div>
+            <div class=list-item>
+              <input type="checkbox" class="checkbox">
+              <p>Do Something</p>
+          </div>
+        </div>
+        
+      </div>
 
    
   </div>

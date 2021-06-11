@@ -1,12 +1,12 @@
 body {
     height: 100%;
     margin: 0;
-
+    font-family: 'comfortaa', sans-serif;
 }
 
 #header-wrapper{
     height: 45px;
-    background-color: rgb(220, 233, 243);
+    background-color: rgb(240, 238, 238);
 }
 
 #main-content {
@@ -17,10 +17,11 @@ body {
 #side-wrapper {
     display: flex;
     flex-direction: column;
-    flex-grow: 2;
+    flex-grow: 1;
+    max-width: 400px;
     background-color:;
-    border-right: solid 1px rgb(189, 203, 214);
-    box-shadow: 1px 1px 1px aliceblue;
+    border-right: solid 1px rgb(221, 219, 219);
+    box-shadow: 2px 2px 1px aliceblue;
 
 }
 #projects-title{
@@ -30,18 +31,27 @@ body {
     flex-direction: row;
     
 }
-#projects-wrapper{
-
+#projects-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 10px 20px 10px 20px;
+   
 }
 
 #list-space {
+    padding: 25px;
     display: flex;
-    flex-grow: 5;
+    flex-grow: 4;
+    flex-direction: column;
 }
 
 #projects-title h2 {
     width: 80%;
-    text-align: center;
+    margin-left: 20px;
+    font-family: 'comfortaa', sans-serif;
+  
 
 }
 
@@ -50,3 +60,53 @@ body {
     line-height: 0;
 }
 
+.project {
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    height: 100px;
+    font-family: 'roboto', sans-serif;
+    line-height: 0;
+    /* justify-content: center; */
+    border: 2px solid whitesmoke;
+    box-shadow: 1px 1px 1px whitesmoke; 
+    border-radius: 3px;
+    /* text-align: center; */
+}
+
+.project h3 {
+    font-family: 'roboto', sans-serif;
+    font-weight: 400;
+    padding-left: 5px;
+    padding-top: 5px;
+
+}
+
+.project p {
+    padding-left: 5px;
+    padding-top: 5px;
+    margin: 1px ;
+    color: gray;
+    font-weight: 300;
+    font-size: 13px;
+}
+
+#current-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-item {
+    border: 1px solid black;
+    margin-bottom: 7px;
+    border: 2px solid rgb(228, 225, 225);
+    box-shadow: 1px 1px 1px whitesmoke; 
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+}
+
+.checkbox {
+    width: 10px;
+    height: 10px;
+}
