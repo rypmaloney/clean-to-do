@@ -1,0 +1,23 @@
+{
+  "name": "clean-to-do",
+  "version": "1.0.0",
+  "description": "A to do list with a clean UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rypmaloney/clean-to-do.git"
+  },
+  "author": "Ryan Maloney",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rypmaloney/clean-to-do/issues"
+  },
+  "homepage": "https://github.com/rypmaloney/clean-to-do#readme",
+  "devDependencies": {
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2"
+  }
+}
