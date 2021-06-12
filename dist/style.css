@@ -20,7 +20,7 @@ body {
     flex-direction: column;
     flex-grow: 1;
     max-width: 400px;
-    background-color:;
+
     border-right: solid 1px rgb(221, 219, 219);
     box-shadow: 2px 2px 1px aliceblue;
 
@@ -46,6 +46,7 @@ body {
     display: flex;
     flex-grow: 4;
     flex-direction: column;
+    max-width: 800px;
 }
 
 #projects-title h2 {
@@ -89,9 +90,7 @@ body {
     border: 2px solid rgb(158, 156, 156);
 }
 
-.current-project {
-    
-}
+/* .current-project {} */
 
 .project h3 {
     font-family: 'roboto', sans-serif;

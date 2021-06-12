@@ -35,26 +35,10 @@ function displayList(listArray) {
             listItem.setAttribute('data', i);
             list.appendChild(listItem);
 
-            let priority = document.createElement('div');
-            priority.setAttribute('class', 'priority');
-            if (listArray[i].priority == 'high'){
-                    priority.classList.add('high');
-                } else if (listArray[i].priority == 'medium'){
-                    priority.classList.add('medium')
-                } else { 
-                    priority.classList.add('low')
-                }
-            listItem.appendChild(priority);
-
-            let checkBox = document.createElement('input');
-            checkBox.setAttribute('type', 'checkbox');
-            checkBox.setAttribute('class', 'checkbox');
-            listItem.appendChild(checkBox);
-
-            let name = document.createElement('p');
-            name.textContent = listArray[i].name;
-            listItem.appendChild(name);
-
+            listItem.innerHTML += 
+                `<div class= "priority ${listArray[i].priority}"> </div>` + 
+                '<input type="checkbox" class="checkbox">' +
+                `<p> ${listArray[i].name} </p>`
         }
 
 
