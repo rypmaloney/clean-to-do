@@ -82,14 +82,16 @@ body {
 }
 
 .project:hover {
-    border: 2px solid rgb(209, 208, 208);
+    background-color:rgb(235, 235, 235);
 }
 
 .project:active {
     border: 2px solid rgb(158, 156, 156);
 }
 
-
+.current-project {
+    
+}
 
 .project h3 {
     font-family: 'roboto', sans-serif;
@@ -114,12 +116,13 @@ body {
 }
 
 .list-item {
-    margin-bottom: 7px;
+    margin-bottom: 7px auto 7px auto;
     /* border: 2px solid rgb(228, 225, 225); */
     /* box-shadow: 1px 1px 1px whitesmoke;  */
     border-radius: 3px;
     display: flex;
     flex-direction: row;
+    min-height: 40px;
 }
 
 .checkbox {
@@ -130,4 +133,26 @@ body {
 .list-item p {
     margin-left: 20px;
     font-size: 13px;
+
+}
+
+.priority {
+    /* height: 100%; */
+    align-self: stretch;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    min-width: 3px;
+
+}
+
+.high {
+    background-color: rgba(247, 73, 73, 0.788);
+}
+
+.medium {
+    background-color: rgba(247, 247, 94, 0.753);
+}
+
+.low {
+    background-color: rgba(70, 185, 70, 0.781);
 }
