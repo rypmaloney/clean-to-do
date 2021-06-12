@@ -7,6 +7,7 @@ body {
 #header-wrapper{
     height: 45px;
     background-color: rgb(240, 238, 238);
+    border-bottom: solid 1px rgb(221, 219, 219);
 }
 
 #main-content {
@@ -58,6 +59,10 @@ body {
 .add {
     font-size: 30px;
     line-height: 0;
+    cursor: pointer;
+}
+.add:active {
+    font-size: 32px;
 }
 
 .project {
@@ -65,6 +70,7 @@ body {
     flex-direction: column;
     width: 170px;
     height: 100px;
+    margin-top: 5px;
     font-family: 'roboto', sans-serif;
     line-height: 0;
     /* justify-content: center; */
@@ -72,7 +78,18 @@ body {
     box-shadow: 1px 1px 1px whitesmoke; 
     border-radius: 3px;
     /* text-align: center; */
+    cursor: pointer;
 }
+
+.project:hover {
+    border: 2px solid rgb(209, 208, 208);
+}
+
+.project:active {
+    border: 2px solid rgb(158, 156, 156);
+}
+
+
 
 .project h3 {
     font-family: 'roboto', sans-serif;
@@ -97,16 +114,20 @@ body {
 }
 
 .list-item {
-    border: 1px solid black;
     margin-bottom: 7px;
-    border: 2px solid rgb(228, 225, 225);
-    box-shadow: 1px 1px 1px whitesmoke; 
+    /* border: 2px solid rgb(228, 225, 225); */
+    /* box-shadow: 1px 1px 1px whitesmoke;  */
     border-radius: 3px;
     display: flex;
     flex-direction: row;
 }
 
 .checkbox {
-    width: 10px;
-    height: 10px;
+    position: relative;
+    top: 11px;
+}
+
+.list-item p {
+    margin-left: 20px;
+    font-size: 13px;
 }
