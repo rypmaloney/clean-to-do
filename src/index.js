@@ -38,9 +38,8 @@ function displayList(listArray) {
             listItem.innerHTML += 
                 `<div class= "priority ${listArray[i].priority}"> </div>` + 
                 '<input type="checkbox" class="checkbox">' +
-                `<p> ${listArray[i].name} </p>`
+                `<p> ${listArray[i].name} </p>` +
+                '<div class="trash"><i class="fa fa-trash-o"></i></div>'
         }
-
-
 }
 displayList(todayList)

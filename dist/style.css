@@ -6,8 +6,8 @@ body {
 
 #header-wrapper{
     height: 45px;
-    background-color: rgb(240, 238, 238);
-    border-bottom: solid 1px rgb(221, 219, 219);
+    background-color: whitesmoke;
+    border-bottom: solid 2px rgb(221, 219, 219);
 }
 
 #main-content {
@@ -47,6 +47,8 @@ body {
     flex-grow: 4;
     flex-direction: column;
     max-width: 800px;
+    
+    
 }
 
 #projects-title h2 {
@@ -87,7 +89,7 @@ body {
 }
 
 .project:active {
-    border: 2px solid rgb(158, 156, 156);
+    border: 2px solid rgbß(158, 156, 156);
 }
 
 /* .current-project {} */
@@ -112,35 +114,42 @@ body {
 #current-list {
     display: flex;
     flex-direction: column;
+    gap: 5px;
 }
 
 .list-item {
-    margin-bottom: 7px auto 7px auto;
+    margin-bottom: auto;
     /* border: 2px solid rgb(228, 225, 225); */
     /* box-shadow: 1px 1px 1px whitesmoke;  */
     border-radius: 3px;
     display: flex;
     flex-direction: row;
     min-height: 40px;
+    border-top: 1px solid whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+    box-shadow: 1px 1px 0px whitesmoke;
+    
 }
 
 .checkbox {
     position: relative;
     top: 11px;
+    color:teal;
 }
 
 .list-item p {
     margin-left: 20px;
     font-size: 13px;
+    width: 90%;
 
 }
 
 .priority {
     /* height: 100%; */
     align-self: stretch;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    min-width: 3px;
+    min-width: 2px;
+    border-radius: 1px;
+    
 
 }
 
@@ -154,4 +163,9 @@ body {
 
 .low {
     background-color: rgba(70, 185, 70, 0.781);
+}
+.trash  {
+    align-self: center;
+    font-size: 15px;
+    color: rgb(139, 139, 139);
 }
