@@ -7,7 +7,8 @@ body {
 #header-wrapper{
     height: 45px;
     background-color: whitesmoke;
-    border-bottom: solid 2px rgb(221, 219, 219);
+    border-bottom: solid 1px rgb(221, 219, 219);
+    box-shadow: 2px 2px 1px aliceblue;
 }
 
 #main-content {
@@ -37,7 +38,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin: 10px 20px 10px 20px;
+    margin: 10px 10px 10px 10px;
    
 }
 
@@ -125,10 +126,18 @@ body {
     display: flex;
     flex-direction: row;
     min-height: 40px;
+    
+    /* border-top: 1px solid whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+    box-shadow: 1px 1px 0px whitesmoke; */
+    
+}
+
+.list-item:hover{
+    margin: -1px;
     border-top: 1px solid whitesmoke;
     border-bottom: 1px solid whitesmoke;
     box-shadow: 1px 1px 0px whitesmoke;
-    
 }
 
 .checkbox {
@@ -168,4 +177,5 @@ body {
     align-self: center;
     font-size: 15px;
     color: rgb(139, 139, 139);
+    cursor: pointer;
 }
