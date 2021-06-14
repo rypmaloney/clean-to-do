@@ -205,13 +205,28 @@ body {
     border: 1px solid whitesmoke;
     padding: 20px 20px 20px 5px;
     box-sizing: border-box;
+    font-family: 'comfortaa', sans-serif;
+    box-shadow: 1px 2px 1px gainsboro;
+   
     
+}
+#submitNewItemBtn {
+    height: 33px;
+    width: 60px;
+    background-color: whitesmoke;
+    font-family: 'comfortaa', sans-serif;
+    border: 1px solid white;
+    box-shadow: 1px 2px 1px gainsboro;
+    border-radius: 3px;
 }
 
 #newItemInput:focus {
     width: 70%;
     height: 25px;
-    border: none;
+outline: none;
+    
+
+    
 }
 
 .hide {
