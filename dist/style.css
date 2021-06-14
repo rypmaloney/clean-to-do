@@ -6,11 +6,20 @@ body {
 
 #header-wrapper{
     height: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-items: end;
     background-color: whitesmoke;
     border-bottom: solid 1px rgb(221, 219, 219);
-    box-shadow: 2px 2px 1px aliceblue;
+    box-shadow: 6px 6px 2px aliceblue;
+    border-top: solid 3px rgb(119, 168, 121);
 }
+#header-wrapper div {
+    width: 100px;
+    margin: auto;
+    
 
+}
 #main-content {
     display: flex;
     height: calc(100vh - 30px);
@@ -179,3 +188,35 @@ body {
     color: rgb(139, 139, 139);
     cursor: pointer;
 }
+
+
+
+#new-item {
+    cursor: pointer;
+    margin-left: 5%;
+    font-size: 13px;
+    width: 100%;
+    
+}
+
+#newItemInput {
+    width: 70%;
+    height: 25px;
+    border: 1px solid whitesmoke;
+    padding: 20px 20px 20px 5px;
+    box-sizing: border-box;
+    
+}
+
+#newItemInput:focus {
+    width: 70%;
+    height: 25px;
+    border: none;
+}
+
+.hide {
+    display:none;
+    
+}
+
+

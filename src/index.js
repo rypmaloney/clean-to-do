@@ -124,9 +124,10 @@ function displayList(listArray) {
     let list = document.getElementById('current-list');
         for (i = 0; i < listArray.length; i++) {
             let listItem = document.createElement('div');
+            let addItem = document.getElementById('new-item');
             listItem.setAttribute('class', 'list-item');
             listItem.setAttribute('data', i);
-            list.appendChild(listItem);
+            list.insertBefore(listItem, addItem);
 
             listItem.innerHTML += 
                 `<div class= "priority ${listArray[i].priority}"> </div>` + 
@@ -135,4 +136,34 @@ function displayList(listArray) {
                 '<div class="trash"><i class="fa fa-trash-o"></i></div>'
         }
 }
+
+function addItemTransition(){
+    let newItem = document.getElementById('new-item');
+    let title = document.getElementById('add');
+    newItem.removeChild(title);
+
+    form = document.createElement('form');
+    form.innerHTML= "<input type= 'text' id='listItemNew' name='listItemNew'>";
+    newItem.appendChild(form);
+
+}
+
+
+let add = document.getElementById('add');
+add.addEventListener('click',()=>toggleForm())
+
+let submitNewItemBtn = document.getElementById('submitNewItemBtn');
+submitNewItemBtn.addEventListener('click', () => toggleForm());
+
+
+function toggleForm(){
+    let newItemSection = document.getElementById('new-item');
+    let add = document.getElementById('add');
+    let form = document.getElementById('newItemForm');
+
+    add.classList.toggle('hide');
+    form.classList.toggle('hide');
+}
+
+
 displayList(todayList)
