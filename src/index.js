@@ -94,7 +94,11 @@ let projects = [
 ]
 
 
-
+function removeChildNodes(parent) {
+    while (parent.children[0]) {
+        parent.removeChild(parent.children[0]);
+    }
+}
 
 
 
@@ -141,6 +145,7 @@ function displayList(listArray) {
 
 function displayProjects(){
     let projectsList = document.getElementById('projects-wrapper');
+    removeChildNodes(projectsList)
     for (let i = 0; i < projects.length; i++) {
         let projItem = document.createElement('div');
         projItem.setAttribute('class', 'project');
@@ -149,7 +154,24 @@ function displayProjects(){
             `<h3>${projects[i].name}</h3>` +
             `<p>${projects[i].list.length} items</p>`
     }
+};
+
+
+function newProj(){ 
+    let form = document.getElementById('projFormContainer');
+    let title = form.title.value;
+    let description = form.description.value;
+
+    createProject(title, description)
+    displayProjects()
+    form.reset()
 }
+
+
+let projSubmitBtn = document.getElementById('submitNewProjBtn');
+projSubmitBtn.addEventListener('click', () => newProj())
+
+
 
 
 displayProjects()
