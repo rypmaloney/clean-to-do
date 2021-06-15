@@ -1,6 +1,8 @@
 console.log('if you see me, everything is A O K')
 
-todayList = [
+import btnControl from './btnControl.js';
+
+let todayList = [
     {
         name: 'This is my first to do',
         priority: 'high',
@@ -122,7 +124,7 @@ function addNewDo(currentProject, name, priority){
 
 function displayList(listArray) {
     let list = document.getElementById('current-list');
-        for (i = 0; i < listArray.length; i++) {
+        for (let i = 0; i < listArray.length; i++) {
             let listItem = document.createElement('div');
             let addItem = document.getElementById('new-item');
             listItem.setAttribute('class', 'list-item');
@@ -149,34 +151,8 @@ function addItemTransition(){
 }
 
 
-let add = document.getElementById('add');
-add.addEventListener('click',()=>toggleItemForm())
 
-let submitNewItemBtn = document.getElementById('submitNewItemBtn');
-submitNewItemBtn.addEventListener('click', () => toggleItemForm());
-
-let addProj = document.getElementById('addProj');
-addProj.addEventListener('click', () => toggleProjForm());
-
-let submitNewProjBtn = document.getElementById('submitNewProjBtn');
-submitNewProjBtn.addEventListener('click', () => toggleProjForm());
-
-function toggleItemForm(){
-    let newItemSection = document.getElementById('new-item');
-    let add = document.getElementById('add');
-    let form = document.getElementById('newItemForm');
-
-    add.classList.toggle('hide');
-    form.classList.toggle('hide');
-}
-
-function toggleProjForm(){
-    let newProjSection = document.getElementById('projectForm');
-    let add = document.getElementById('addProj');
-
-    newProjSection.classList.toggle('form-hide');
-
-}
 
 displayList(todayList)
+btnControl()
 

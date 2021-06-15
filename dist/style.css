@@ -144,9 +144,8 @@ body {
 
 .list-item:hover{
     margin: -1px;
-    border-top: 1px solid whitesmoke;
-    border-bottom: 1px solid whitesmoke;
-    box-shadow: 1px 1px 0px whitesmoke;
+    border: 1px solid whitesmoke;
+    box-shadow: 1px 2px 0px gainsboro;
 }
 
 .checkbox {
