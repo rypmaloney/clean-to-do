@@ -1,7 +1,7 @@
 
 function btnControl(){
     let add = document.getElementById('add');
-    add.addEventListener('click',()=>toggleItemForm())
+    add.addEventListener('click',()=> toggleItemForm())
 
     let submitNewItemBtn = document.getElementById('submitNewItemBtn');
     submitNewItemBtn.addEventListener('click', () => toggleItemForm());
@@ -41,5 +41,15 @@ function addItemTransition(){
     newItem.appendChild(form);
 
 }
+
+
+function addToList(){
+    let form = document.getElementById('newItemForm');
+    let currentProject = findCurrentProj();
+addNewDo(currentProject, form.listItemNew.value, form.priority.value)
+}
+
+
+
 
 export default btnControl

@@ -61,12 +61,30 @@ body {
     
 }
 
-#projects-title h2 {
+#current-project-title h2, #projects-title h2 {
     width: 80%;
     margin-left: 20px;
-    font-family: 'comfortaa', sans-serif;
-  
+    font-family: 'roboto', sans-serif;
+    font-weight: 300;
+}
 
+#current-project-title {
+    display:flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(169, 169, 169, 0.568);
+    margin-bottom: 10px;
+}
+#current-project-title > h2 {
+    width:fit-content;
+}
+
+#current-project-title > p {
+    font-size: 11px;
+    margin-left: 2%;
+    font-family: 'roboto', sans-serif;
+    font-weight: 300;
+    align-self: flex-end;
+    margin-bottom: 22px;
 }
 
 #addProj {
@@ -108,7 +126,9 @@ body {
     border: 2px solid rgbß(158, 156, 156);
 }
 
-/* .current-project {} */
+ 
+    
+
 
 .project h3 {
     font-family: 'roboto', sans-serif;
@@ -182,13 +202,13 @@ body {
     background-color: rgba(247, 73, 73, 0.788);
 }
 
-/* .medium {
+.medium {
     background-color: rgba(247, 247, 94, 0.753);
 }
 
 .low {
     background-color: rgba(70, 185, 70, 0.781);
-} */
+} 
 .trash  {
     align-self: center;
     font-size: 15px;
@@ -196,6 +216,15 @@ body {
     cursor: pointer;
 }
 
+#select{
+    height: 33px;
+    width: 110px;
+    background-color: whitesmoke;
+    font-family: 'comfortaa', sans-serif;
+    border: 1px solid white;
+    box-shadow: 1px 2px 1px gainsboro;
+    border-radius: 3px;
+}
 
 
 #new-item {

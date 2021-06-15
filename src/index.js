@@ -135,9 +135,18 @@ function addNewDo(currentProject, name, priority){
 }
 
 
-function displayList(listArray) {
+function displayList(project) {
     let list = document.getElementById('current-list');
     removeAllButOne(list)
+
+    let titleSpace = document.getElementById('current-project-title');
+    titleSpace.innerHTML = 
+        `<h2>${project.name}</h2>` + 
+        `<p>${project.description}</p>`
+    
+
+    let listArray = project.list;
+
         for (let i = 0; i < listArray.length; i++) {
             let listItem = document.createElement('div');
             let addItem = document.getElementById('new-item');
@@ -188,12 +197,6 @@ projSubmitBtn.addEventListener('click', () => newProj())
 
 
 
-
-
-
-
-
-
 function changeCurrentProj(e){
     let active = e.target.getAttribute("data");
     console.log(active)
@@ -205,11 +208,38 @@ function changeCurrentProj(e){
     projects[active].current = true;
 
     displayProjects()
-    displayList(projects[active].list)
+    displayList(projects[active])
+}
+
+function findCurrentProj(){
+    for(let i = 0; i < projects.length; i++)
+        if (projects[i].current) return projects[i]   
 }
 
 
+function addToList(){
+    let form = document.getElementById('newItemForm');
+    let currentProject = findCurrentProj();
+    addNewDo(currentProject, form.listItemNew.value, form.priority.value);
+    currentProject = findCurrentProj();
+    displayProjects();
+    displayList(currentProject);
+    form.reset();
+}
+
+
+
+
+
+
+let submitNewItemBtn = document.getElementById('submitNewItemBtn');
+    submitNewItemBtn.addEventListener('click',()=> addToList())
+
+
+
+
+
 displayProjects()
-displayList(todayList)
+
 btnControl()
 
