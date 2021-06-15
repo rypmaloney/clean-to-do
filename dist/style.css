@@ -69,12 +69,12 @@ body {
 
 }
 
-.add {
+#addProj {
     font-size: 30px;
     line-height: 0;
     cursor: pointer;
 }
-.add:active {
+#addProj:active {
     font-size: 32px;
 }
 
@@ -175,13 +175,13 @@ body {
     background-color: rgba(247, 73, 73, 0.788);
 }
 
-.medium {
+/* .medium {
     background-color: rgba(247, 247, 94, 0.753);
 }
 
 .low {
     background-color: rgba(70, 185, 70, 0.781);
-}
+} */
 .trash  {
     align-self: center;
     font-size: 15px;
@@ -193,9 +193,10 @@ body {
 
 #new-item {
     cursor: pointer;
-    margin-left: 5%;
     font-size: 13px;
+    margin-left: 5%;
     width: 100%;
+    
     
 }
 
@@ -210,7 +211,7 @@ body {
    
     
 }
-#submitNewItemBtn {
+#submitNewItemBtn,  #submitNewProjBtn  {
     height: 33px;
     width: 60px;
     background-color: whitesmoke;
@@ -223,7 +224,7 @@ body {
 #newItemInput:focus {
     width: 70%;
     height: 25px;
-outline: none;
+    outline: none;
     
 
     
@@ -234,4 +235,36 @@ outline: none;
     
 }
 
+.form-hide{
+    height: 0;
+    display: none;
+}
+.form-popup{
 
+    
+}
+
+.form-container {
+    max-width: 300px;
+    max-height: 600px;
+    padding: 10px;
+    background-color: white;
+    text-align: center;
+  }
+
+    .form-container input[type=text]{
+      width: 100%;
+      padding: 5px;
+      margin: 10px;
+      border: 1px solid whitesmoke;
+      box-sizing: border-box;
+      font-family: 'comfortaa', sans-serif;
+  }
+  .form-container input[type=text]:focus{
+      outline: none;
+      box-shadow: 1px 2px 1px gainsboro;
+  }
+
+  #submitNewProjBtn {
+      margin-left: 90%;
+  }

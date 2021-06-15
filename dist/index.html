@@ -22,7 +22,16 @@
       <div id="side-wrapper">
         <div id= "projects-title">
           <h2>Projects</h2>
-           <p class="add">+</p>
+           <p id="addProj">+</p>
+        </div>
+        <div class="form-popup form-hide" id="projectForm" >
+          <form  class="form-container">
+            <h3>New Project</h3>
+            <input type="text" placeholder="Title" name="title" required>
+            <input type="text" placeholder="Description" name="description" >
+            <button type='button' id='submitNewProjBtn'>Enter</button>
+          </form>
+
         </div>
         <div id="projects-wrapper">
           <div class="project current-project"> 
