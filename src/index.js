@@ -139,20 +139,20 @@ function displayList(listArray) {
         }
 }
 
-function addItemTransition(){
-    let newItem = document.getElementById('new-item');
-    let title = document.getElementById('add');
-    newItem.removeChild(title);
-
-    form = document.createElement('form');
-    form.innerHTML= "<input type= 'text' id='listItemNew' name='listItemNew'>";
-    newItem.appendChild(form);
-
+function displayProjects(){
+    let projectsList = document.getElementById('projects-wrapper');
+    for (let i = 0; i < projects.length; i++) {
+        let projItem = document.createElement('div');
+        projItem.setAttribute('class', 'project');
+        projectsList.appendChild(projItem);
+        projItem.innerHTML +=
+            `<h3>${projects[i].name}</h3>` +
+            `<p>${projects[i].list.length} items</p>`
+    }
 }
 
 
-
-
+displayProjects()
 displayList(todayList)
 btnControl()
 

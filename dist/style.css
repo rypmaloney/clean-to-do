@@ -235,12 +235,13 @@ body {
 }
 
 .form-hide{
-    height: 0;
+    height: 0px;
     display: none;
+  
 }
 .form-popup{
-
-    
+ 
+    height: 250px;
 }
 
 .form-container {
@@ -265,5 +266,5 @@ body {
   }
 
   #submitNewProjBtn {
-      margin-left: 90%;
+      margin-left: 85%
   }
