@@ -84,7 +84,7 @@ body {
     width: 170px;
     height: 100px;
     margin-top: 2%;
-    margin-right: 2%;
+    margin-left: 3%;
     font-family: 'roboto', sans-serif;
     line-height: 0;
     /* justify-content: center; */
@@ -93,6 +93,11 @@ body {
     border-radius: 3px;
     /* text-align: center; */
     cursor: pointer;
+}
+
+.current-project {
+    border: 1px solid darkcyan;
+    background-color: rgba(0, 139, 63, 0.034);
 }
 
 .project:hover {
@@ -110,6 +115,7 @@ body {
     font-weight: 400;
     padding-left: 5px;
     padding-top: 5px;
+    pointer-events: none;
 
 }
 
@@ -120,6 +126,7 @@ body {
     color: gray;
     font-weight: 300;
     font-size: 13px;
+    pointer-events: none;
 }
 
 #current-list {
