@@ -140,14 +140,13 @@ function displayProjects(){
 
 
 function populateAll(){
+    projects[0].list = [];
     for (let i =0; i < projects.length; i++){
         if (projects[i].name !== 'All'){
             for (let j = 0; j < projects[i].list.length; j++)
                 projects[0].list.push(projects[i].list[j])
         }
-        
     }
-
 }
 
 function newProj(){ 
@@ -239,6 +238,7 @@ function addToList(){
     let currentProject = findCurrentProj();
     addNewDo(currentProject, form.listItemNew.value, form.priority.value);
     currentProject = findCurrentProj();
+    populateAll()
     displayProjects();
     displayList(currentProject);
     form.reset();
