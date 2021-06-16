@@ -110,7 +110,6 @@ function removeAllButOne(parent) {
 }
 
 
-let currentList = projects[0]
 
 
 const createProject = (name, description) => {
@@ -147,19 +146,28 @@ function displayList(project) {
 
     let listArray = project.list;
 
-        for (let i = 0; i < listArray.length; i++) {
+    for (let i = 0; i < listArray.length; i++) {
             let listItem = document.createElement('div');
             let addItem = document.getElementById('new-item');
             listItem.setAttribute('class', 'list-item');
             listItem.setAttribute('data', i);
             list.insertBefore(listItem, addItem);
 
+
             listItem.innerHTML += 
                 `<div class= "priority ${listArray[i].priority}"> </div>` + 
                 '<input type="checkbox" class="checkbox">' +
                 `<p> ${listArray[i].name} </p>` +
-                '<div class="trash"><i class="fa fa-trash-o"></i></div>'
+                `<div class="trash"><i class="fa fa-trash-o"></i></div>`
+
+           
         }
+        let trash = document.getElementsByClassName('trash')
+        for (let i = 0; i < trash.length; i++) {
+            trash[i].setAttribute('data', i)
+            trash[i].addEventListener('click', (e) => deleteItem(e, project));
+        }
+    
 }
 
 function displayProjects(){
@@ -229,6 +237,14 @@ function addToList(){
 
 
 
+function deleteItem(e, project){
+    console.log(e.target.getAttribute('data'))
+    let item = e.target.getAttribute('data');
+
+    project.list.splice(item,1)
+    displayList(project);
+
+}
 
 
 
@@ -240,6 +256,5 @@ let submitNewItemBtn = document.getElementById('submitNewItemBtn');
 
 
 displayProjects()
-
 btnControl()
 

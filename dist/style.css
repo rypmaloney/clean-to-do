@@ -216,6 +216,10 @@ body {
     cursor: pointer;
 }
 
+.fa, .fa-trash-o{
+    pointer-events: none;
+}
+
 #select{
     height: 33px;
     width: 110px;
