@@ -236,11 +236,10 @@ function addToList(){
 }
 
 
-
+//perhaps too tightly tied to displayList
 function deleteItem(e, project){
     console.log(e.target.getAttribute('data'))
     let item = e.target.getAttribute('data');
-
     project.list.splice(item,1)
     displayList(project);
 
