@@ -32,6 +32,7 @@ body {
     border-right: solid 1px rgb(221, 219, 219);
     box-shadow: 2px 2px 1px aliceblue;
     width: 250px;
+    min-width: 250px;
 
 }
 #projects-title{
@@ -117,6 +118,16 @@ body {
     cursor: pointer; 
 }
 
+.perm-project h3 {
+    font-family: 'roboto', sans-serif;
+    font-weight: 400 !important;
+    font-size: 16px;
+    pointer-events: none;
+    padding-top: 6px;
+    padding-left: 10px;
+    margin: 0;
+}
+
 .current-project {
     border: 1px solid darkcyan;
     background-color: rgba(0, 139, 63, 0.034);
@@ -136,7 +147,7 @@ body {
 
 .project h3 {
     font-family: 'roboto', sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 16px;
     pointer-events: none;
     padding-top: 6px;
