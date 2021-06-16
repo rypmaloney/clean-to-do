@@ -118,15 +118,7 @@ body {
     cursor: pointer; 
 }
 
-.perm-project h3 {
-    font-family: 'roboto', sans-serif;
-    font-weight: 400 !important;
-    font-size: 16px;
-    pointer-events: none;
-    padding-top: 6px;
-    padding-left: 10px;
-    margin: 0;
-}
+
 
 .current-project {
     border: 1px solid darkcyan;
@@ -147,12 +139,13 @@ body {
 
 .project h3 {
     font-family: 'roboto', sans-serif;
-    font-weight: 300;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 15px;
     pointer-events: none;
     padding-top: 6px;
     padding-left: 10px;
     margin: 0;
+    pointer-events: none;
 
 }
 
@@ -162,6 +155,7 @@ body {
     font-size: 11px;
     align-content: center;
     padding-left: 20px;
+    pointer-events: none;
 }
 
 #current-list {

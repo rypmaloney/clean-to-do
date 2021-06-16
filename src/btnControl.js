@@ -1,4 +1,5 @@
 
+
 function btnControl(){
     let add = document.getElementById('add');
     add.addEventListener('click',()=> toggleItemForm())
@@ -46,7 +47,7 @@ function addItemTransition(){
 function addToList(){
     let form = document.getElementById('newItemForm');
     let currentProject = findCurrentProj();
-addNewDo(currentProject, form.listItemNew.value, form.priority.value)
+    addNewDo(currentProject, form.listItemNew.value, form.priority.value)
 }
 
 
