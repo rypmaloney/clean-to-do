@@ -1,35 +1,11 @@
 console.log('if you see me, everything is A O K')
 
+
 import btnControl from './btnControl.js';
 import {removeChildNodes, removeAllButOne} from './utility.js';
 import {format, formatDistanceToNow} from 'date-fns';
 
-let todayList = [
-    {
-        name: 'This is my first to do',
-        priority: 'high',
-        complete: false, 
-        
-    },
-    {
-        name: 'This is my second to do',
-        priority: 'medium',
-        complete: false, 
-        
-    },
-    {
-        name: 'This is my third thing to do',
-        priority: 'low',
-        complete: false, 
-        
-    },
-    {
-        name: 'This is my fourth thing to do',
-        priority: 'high',
-        complete: false, 
-        
-    }
-]
+
 
 let projects = [
     {
@@ -48,7 +24,10 @@ let projects = [
         list: [{
             name: 'This is my first toadfasf do',
             priority: 'high',
-            date: '2018-08-03',
+            date: '2018-10-03',
+            dateSortable: 0,
+            prioritySortable: 0,
+            timeUntil: 'one day',
             complete: false, 
             
             
@@ -56,21 +35,30 @@ let projects = [
         {
             name: 'This is my second to do',
             priority: 'medium',
-            date: '2018-08-03',
+            date: '2018-10-29',
+            timeUntil: 'one day',
+            dateSortable: 0,
+            prioritySortable: 1,
             complete: false, 
             
         },
         {
             name: 'This is my thiasdfasdfrd thing to do',
             priority: 'low',
-            date: '2018-08-03',
+            date: '2028-08-03',
+            dateSortable: 0,
+            prioritySortable: 2,
+            timeUntil: 'one day',
             complete: false, 
             
         },
         {
             name: 'This is my fourth thing to do',
             priority: 'high',
-            date: '2018-08-03',
+            date: '2021-08-03',
+            dateSortable: 0,
+            prioritySortable: 0,
+            timeUntil: 'one day',
             complete: false, 
             
         }]
@@ -84,7 +72,10 @@ let projects = [
         list: [{
             name: 'This is my first to do',
             priority: 'high',
-            date: '2018-08-03',
+            date: '2019-03-03',
+            dateSortable: 20331002,
+            prioritySortable: 0,
+            timeUntil: 'one day',
             complete: false, 
             
         },
@@ -92,13 +83,19 @@ let projects = [
             name: 'This is my second to do',
             priority: 'medium',
             date: '2018-08-03',
+            dateSortable: 20230310,
+            prioritySortable: 1,
+            timeUntil: 'one day',
             complete: false, 
             
         },
         {
             name: 'This is my thirdasfd thing to do',
             priority: 'low',
-            date: '2018-08-03',
+            date: '2021-06-07',
+            dateSortable: 20221201,
+            prioritySortable: 2,
+            timeUntil: 'one day',
             complete: false, 
             
         },
@@ -106,6 +103,9 @@ let projects = [
             name: 'This is my fourth thing to do',
             priority: 'high',
             date: '2018-08-03',
+            dateSortable: 20211202,
+            prioritySortable: 0,
+            timeUntil: 'one day',
             complete: false, 
             
         }]
@@ -196,11 +196,27 @@ function findCurrentProj(){
 
 //LISTs
 function addNewDo(currentProject, name, priority, date){
+    let sortabled = dateToNumber(date)
+    let split = date.split('-');
+    split[1] -= 1;
+    let timeUntil = formatDistanceToNow(new Date(split[0], split[1], split[2]),{ addSuffix: true } );
+    
+    let sortablep = 2;
+    if(priority == 'high'){
+        sortablep = 0;
+    }else if (priority == 'medium'){
+        sortablep = 1
+    }else{ sortablep =2}
+
+
     currentProject.list.push({
         name: name,
         priority: priority,
         date: date,
+        dateSortable: sortabled,
+        prioritySortable: sortablep,
         complete: false,
+        timeUntil: timeUntil,
     })
 }
 
@@ -212,7 +228,9 @@ function displayList(project) {
     let titleSpace = document.getElementById('current-project-title');
     titleSpace.innerHTML = 
         `<h2>${project.name}</h2>` + 
-        `<p>${project.description}</p>`
+        `<p>${project.description}</p>` +
+        `<button id="dateSort">Sort by Date</button>` +
+        `<button id="prioritySort">Sort by Priority</button>`
     
 
     let listArray = project.list;
@@ -237,7 +255,7 @@ function displayList(project) {
                     `<div class= "priority ${listArray[i].priority}"> </div>` + 
                     `<div class="checkbox" data="${i}">${checkBoxMark}</div>` +
                     `<p class ='listContent'> ${listArray[i].name} </p>` +
-                    `<p class='timeUntil'> Due in  ${listArray[i].date} </p>` 
+                    `<p class='timeUntil'> Due in  ${listArray[i].timeUntil} </p>` 
                     
 
             } else{
@@ -247,17 +265,14 @@ function displayList(project) {
                     `<div class= "priority ${listArray[i].priority}"> </div>` + 
                     `<div class="checkbox" data="${i}">${checkBoxMark}</div>`+
                     `<p class= 'listContent'> ${listArray[i].name} </p>` +
-                    `<p class='timeUntil'> Due in ${listArray[i].date} </p>` +
+                    `<p class='timeUntil'> Due in ${listArray[i].timeUntil} </p>` +
                     `<div class="trash"><i class="fa fa-trash-o"></i></div>`
             }
            
         }
-        let trash = document.getElementsByClassName('trash')
-        for (let i = 0; i < trash.length; i++) {
-            trash[i].setAttribute('data', i)
-            trash[i].addEventListener('click', (e) => deleteItem(e, project));
-        }
+        
         addCheckListener()
+        btnControl()
 }
 
 
@@ -265,33 +280,22 @@ function addToList(){
     let form = document.getElementById('newItemForm');
     let currentProject = findCurrentProj();
 
-    let date = form.dueDate.value.split('-');
-    date[0] = parseInt(date[0]);
-    date[1] = parseInt(date[1]);
-    date[1]-= 1;
-    date[2] = parseInt(date[2]);
-    let formattedDate = format(new Date(date[0],date[1],date[2]),  "MMMM do" );
-
-    let timeUntil = formatDistanceToNow(new Date(date[0], date[1], date[2]),{ addSuffix: true } )
+    let date = form.dueDate.value
     
-    addNewDo(currentProject, form.listItemNew.value, form.priority.value, timeUntil);
+    addNewDo(currentProject, form.listItemNew.value, form.priority.value, date);
     currentProject = findCurrentProj();
+
     populateAll()
     displayProjects();
     displayList(currentProject);
     form.reset();
-}
-
-
-//perhaps too tightly tied to displayList
-function deleteItem(e, project){
-    console.log(e.target.getAttribute('data'))
-    let item = e.target.getAttribute('data');
-    project.list.splice(item,1)
-    populateAll();
-    displayList(project);
+    btnControl()
 
 }
+
+
+
+
 
 
 
@@ -301,6 +305,7 @@ function completeItem(e){
     let project = findCurrentProj();
 
     project.list[item].complete ? project.list[item].complete = false : project.list[item].complete = true;
+
     populateAll();
     displayList(project);
 }
@@ -310,23 +315,51 @@ function completeItem(e){
 
 
 
+function sortByDate(){
+    console.log('running')
+
+    let project = findCurrentProj()
+    //sort Array
+    project.list.sort(function(a, b) {
+        return a.dateSortable - b.dateSortable})
+    project = findCurrentProj()
+    displayList(project)
+
+
+}
+
+function sortByPriority(){
+    console.log('sort priority')
+
+    let project = findCurrentProj()
+    //sort Array
+    project.list.sort(function(a, b) {
+        return a.prioritySortable - b.prioritySortable})
+    project = findCurrentProj()
+
+    console.log(project)
+    displayList(project)
+}
 
 
 
 
+function dateToNumber(dateString){
+    let date = dateString.split('-');
+     return Number(date[0]+date[1]+date[2]);
+ 
+ }
 
 
 
-
-
-
-
-populateAll()
-displayProjects()
-displayList(projects[0])
-btnControl()
-addCheckListener()
-
+function loadSetup(){
+    populateAll()
+    displayProjects()
+    displayList(projects[0])
+    btnControl()
+    addCheckListener()
+}
+loadSetup()
 
 function addCheckListener(){
     let boxes = document.getElementsByClassName('checkbox');
@@ -341,4 +374,4 @@ let submitNewItemBtn = document.getElementById('submitNewItemBtn');
 
 
 
-
+export  {loadSetup, sortByDate, sortByPriority};

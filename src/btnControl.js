@@ -1,3 +1,4 @@
+import {deleteItem, findCurrentProj, sortByDate, sortByPriority} from "./index.js"
 
 
 function btnControl(){
@@ -12,6 +13,12 @@ function btnControl(){
 
     let submitNewProjBtn = document.getElementById('submitNewProjBtn');
     submitNewProjBtn.addEventListener('click', () => toggleProjForm());
+
+    let sortByDateBtn = document.getElementById('dateSort')
+    sortByDateBtn.addEventListener('click', () => sortByDate())
+
+    let sortByPriorityBtn = document.getElementById('prioritySort')
+    sortByPriorityBtn.addEventListener('click', () => sortByPriority())
 }
 
 function toggleItemForm(){

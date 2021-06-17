@@ -79,6 +79,7 @@ body {
 #current-project-title {
     display:flex;
     flex-direction: row;
+
     border-bottom: 1px solid rgba(169, 169, 169, 0.568);
     margin-bottom: 10px;
 }
@@ -89,10 +90,39 @@ body {
 #current-project-title > p {
     font-size: 11px;
     margin-left: 2%;
+    margin-right: auto;
     font-family: 'roboto', sans-serif;
     font-weight: 300;
     align-self: flex-end;
     margin-bottom: 22px;
+}
+
+
+#dateSort, #prioritySort {
+    display: flex;
+    margin: 10px;
+    align-self:flex-end;
+    max-width: 60px;
+    height: 30px;
+    border: none;
+    background-color: white;
+    font-family: 'roboto', sans-serif;
+    font-size: 10px;
+    padding-top: 2px;
+
+}
+#dateSort{
+
+    margin-right: 10px;
+}
+
+#dateSort:hover, #prioritySort:hover{
+    background-color: whitesmoke;
+}
+
+.sortActive{
+    color: tomato !important;
+    border: 1px solid slategray !important;
 }
 
 #addProj {
@@ -117,6 +147,8 @@ body {
 
     cursor: pointer; 
 }
+
+
 
 
 
@@ -218,7 +250,8 @@ body {
 }
 .timeUntil{
     font-family: 'roboto', sans-serif;
-    font-size: 12px;
+    font-size: 12px !important;
+    color:rgba(87, 85, 85, 0.925);
     font-weight: 200;
     max-width: 150px;
 }
