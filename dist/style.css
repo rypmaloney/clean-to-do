@@ -187,10 +187,6 @@ body {
     text-decoration: line-through;
 }
 
-input[type="checkbox"]{
-    width: 30px;
-    -webkit-appearance:button;
-}
 
 .list-item:hover{
     margin: -1px;
@@ -199,17 +195,15 @@ input[type="checkbox"]{
 }
 
 .checkbox {
-    margin-top: 11px;
-    margin-left: 5px;
-    width: 40px;
+    align-content: center;
+    margin: 7px;
+    min-width: 20px;
+    max-width:20px;
     height: 20px;
     border: 2px solid rgba(128, 128, 128, 0.342);
     border-radius: 4px;
 }
 
-span {
-    font-size: 50px;
-}
 
 .list-item p {
     margin-left: 20px;
@@ -260,12 +254,15 @@ span {
     box-shadow: 1px 2px 1px gainsboro;
     border-radius: 3px;
 }
-
+#newItemForm{
+    margin-left: 30px;
+}
 
 #new-item {
     cursor: pointer;
     font-size: 13px;
     width: 98%;
+
     
     
 }
@@ -283,8 +280,9 @@ span {
 }
 
 #newItemInput {
-    margin-left: 20px;
-    min-width: 50%;
+    margin-left: 0px;
+    margin-bottom: 15px;
+    min-width: 90%;
     height: 25px;
     border: 1px solid whitesmoke;
     padding: 20px 20px 20px 20px;
@@ -312,6 +310,9 @@ span {
     
 
     
+}
+#item-form-controls{
+    margin-left: 0px;
 }
 
 .hide {

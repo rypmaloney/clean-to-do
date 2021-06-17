@@ -222,7 +222,7 @@ function displayList(project) {
             listItem.setAttribute('class', 'list-item');
             listItem.setAttribute('data', i);
             list.insertBefore(listItem, addItem);
-            let checkBoxMark = '';
+            let checkBoxMark = ' ';
 
             if (listArray[i].complete == true){
                 listItem.setAttribute('class', 'complete list-item')
@@ -263,7 +263,7 @@ function displayList(project) {
 function addToList(){
     let form = document.getElementById('newItemForm');
     let currentProject = findCurrentProj();
-    addNewDo(currentProject, form.listItemNew.value, form.priority.value);
+    addNewDo(currentProject, form.listItemNew.value, form.priority.value, form.dueDate.value);
     currentProject = findCurrentProj();
     populateAll()
     displayProjects();
