@@ -111,8 +111,8 @@ body {
     height: 30px;
     padding: 0;
     margin-bottom: 10px;
-    /* border: 2px solid whitesmoke;
-    box-shadow: 1px 1px 1px whitesmoke;  */
+    border: 1px solid white;
+
     border-radius: 3px;
 
     cursor: pointer; 
@@ -179,6 +179,19 @@ body {
     
 }
 
+.complete {
+    color: gainsboro !important;
+    
+}
+.complete > p {
+    text-decoration: line-through;
+}
+
+input[type="checkbox"]{
+    width: 30px;
+    -webkit-appearance:button;
+}
+
 .list-item:hover{
     margin: -1px;
     border: 1px solid whitesmoke;
@@ -186,9 +199,16 @@ body {
 }
 
 .checkbox {
-    position: relative;
-    top: 11px;
-    color:teal;
+    margin-top: 11px;
+    margin-left: 5px;
+    width: 40px;
+    height: 20px;
+    border: 2px solid rgba(128, 128, 128, 0.342);
+    border-radius: 4px;
+}
+
+span {
+    font-size: 50px;
 }
 
 .list-item p {
@@ -231,9 +251,11 @@ body {
 
 #select{
     height: 33px;
-    width: 110px;
+    width: 90px;
     background-color: whitesmoke;
-    font-family: 'comfortaa', sans-serif;
+    font-family: 'roboto', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
     border: 1px solid white;
     box-shadow: 1px 2px 1px gainsboro;
     border-radius: 3px;
@@ -243,35 +265,48 @@ body {
 #new-item {
     cursor: pointer;
     font-size: 13px;
-    margin-left: 5%;
-    width: 100%;
+    width: 98%;
     
     
 }
 
+#dueDate{
+    height: 33px;
+    background-color: whitesmoke;
+    font-family: 'roboto', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    border: 1px solid white;
+    box-shadow: 1px 2px 1px gainsboro;
+    border-radius: 3px;
+
+}
+
 #newItemInput {
-    width: 70%;
+    margin-left: 20px;
+    min-width: 50%;
     height: 25px;
     border: 1px solid whitesmoke;
-    padding: 20px 20px 20px 5px;
+    padding: 20px 20px 20px 20px;
     box-sizing: border-box;
     font-family: 'comfortaa', sans-serif;
     box-shadow: 1px 2px 1px gainsboro;
    
     
 }
-#submitNewItemBtn,  #submitNewProjBtn  {
+#submitNewItemBtn,  #submitNewProjBtn {
     height: 33px;
-    width: 60px;
+    width: 50px;
     background-color: whitesmoke;
-    font-family: 'comfortaa', sans-serif;
+    font-family: 'roboto', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
     border: 1px solid white;
     box-shadow: 1px 2px 1px gainsboro;
     border-radius: 3px;
 }
 
 #newItemInput:focus {
-    width: 70%;
     height: 25px;
     outline: none;
     
@@ -317,3 +352,6 @@ body {
   #submitNewProjBtn {
     margin-left: 5px;
   }
+
+
+

@@ -47,7 +47,8 @@ function addItemTransition(){
 function addToList(){
     let form = document.getElementById('newItemForm');
     let currentProject = findCurrentProj();
-    addNewDo(currentProject, form.listItemNew.value, form.priority.value)
+    let date = `'${form.dueDate.value}'`
+    addNewDo(currentProject, form.listItemNew.value, form.priority.value, date)
 }
 
 

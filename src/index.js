@@ -35,7 +35,7 @@ let projects = [
         name: "All",
         description: 'All to-do items',
         complete: false,
-        current: false,
+        current: true,
         list: [],
         
     },
@@ -47,6 +47,7 @@ let projects = [
         list: [{
             name: 'This is my first toadfasf do',
             priority: 'high',
+            date: '2018-08-03',
             complete: false, 
             
             
@@ -54,18 +55,21 @@ let projects = [
         {
             name: 'This is my second to do',
             priority: 'medium',
+            date: '2018-08-03',
             complete: false, 
             
         },
         {
             name: 'This is my thiasdfasdfrd thing to do',
             priority: 'low',
+            date: '2018-08-03',
             complete: false, 
             
         },
         {
             name: 'This is my fourth thing to do',
             priority: 'high',
+            date: '2018-08-03',
             complete: false, 
             
         }]
@@ -75,28 +79,32 @@ let projects = [
         name: "This week",
         description: 'Tasks that need to be completed this week',
         complete: false,
-        current: true,
+        current: false,
         list: [{
             name: 'This is my first to do',
             priority: 'high',
+            date: '2018-08-03',
             complete: false, 
             
         },
         {
             name: 'This is my second to do',
             priority: 'medium',
+            date: '2018-08-03',
             complete: false, 
             
         },
         {
             name: 'This is my thirdasfd thing to do',
             priority: 'low',
+            date: '2018-08-03',
             complete: false, 
             
         },
         {
             name: 'This is my fourth thing to do',
             priority: 'high',
+            date: '2018-08-03',
             complete: false, 
             
         }]
@@ -121,7 +129,6 @@ const createProject = (name, description) => {
 
 
 function displayProjects(){
-
     let projectsList = document.getElementById('projects-wrapper');
     removeChildNodes(projectsList)
     for (let i = 0; i < projects.length; i++) {
@@ -133,7 +140,7 @@ function displayProjects(){
         projItem.innerHTML +=
             `<h3>${projects[i].name}</h3>` +
             `<p>${projects[i].list.length} items</p>`;
-            
+        if (i === 2) {projItem.style.marginBottom = "30px"}
        projItem.addEventListener('click', (e) => {changeCurrentProj(e)})   
     }
 };
@@ -187,10 +194,11 @@ function findCurrentProj(){
 
 
 //LISTs
-function addNewDo(currentProject, name, priority){
+function addNewDo(currentProject, name, priority, date){
     currentProject.list.push({
         name: name,
         priority: priority,
+        date: date,
         complete: false,
     })
 }
@@ -214,14 +222,33 @@ function displayList(project) {
             listItem.setAttribute('class', 'list-item');
             listItem.setAttribute('data', i);
             list.insertBefore(listItem, addItem);
+            let checkBoxMark = '';
 
+            if (listArray[i].complete == true){
+                listItem.setAttribute('class', 'complete list-item')
+                checkBoxMark = "<span style ='font-size: 18px; margin-left: 3px; pointer-events: none;'>&#10004;</span>"
+            };
 
-            listItem.innerHTML += 
-                `<div class= "priority ${listArray[i].priority}"> </div>` + 
-                '<input type="checkbox" class="checkbox">' +
-                `<p> ${listArray[i].name} </p>` +
-                `<div class="trash"><i class="fa fa-trash-o"></i></div>`
+            if (project.name === 'All'){
+                addItem = document.getElementById('new-item');
+                addItem.classList.add('hide');
+                listItem.innerHTML += 
+                    `<div class= "priority ${listArray[i].priority}"> </div>` + 
+                    `<div class="checkbox" data="${i}">${checkBoxMark}</div>` +
+                    `<p> ${listArray[i].name} </p>` +
+                    `<p> ${listArray[i].date} </p>` 
+                    
 
+            } else{
+                addItem = document.getElementById('new-item');
+                addItem.classList.remove('hide');
+                listItem.innerHTML += 
+                    `<div class= "priority ${listArray[i].priority}"> </div>` + 
+                    `<div class="checkbox" data="${i}">${checkBoxMark}</div>`+
+                    `<p> ${listArray[i].name} </p>` +
+                    `<p> ${listArray[i].date} </p>` +
+                    `<div class="trash"><i class="fa fa-trash-o"></i></div>`
+            }
            
         }
         let trash = document.getElementsByClassName('trash')
@@ -229,7 +256,7 @@ function displayList(project) {
             trash[i].setAttribute('data', i)
             trash[i].addEventListener('click', (e) => deleteItem(e, project));
         }
-    
+        addCheckListener()
 }
 
 
@@ -251,34 +278,46 @@ function deleteItem(e, project){
     console.log(e.target.getAttribute('data'))
     let item = e.target.getAttribute('data');
     project.list.splice(item,1)
+    populateAll();
     displayList(project);
 
 }
 
 
 
+function completeItem(e){
+    console.log(e.target.getAttribute('data'))
+    let item = e.target.getAttribute('data');
+    let project = findCurrentProj();
+
+    project.list[item].complete ? project.list[item].complete = false : project.list[item].complete = true;
+    populateAll();
+    displayList(project);
+}
+
+
+
+
+
+
+
+
+
+
+
 populateAll()
+displayProjects()
+displayList(projects[0])
+btnControl()
+addCheckListener()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function addCheckListener(){
+    let boxes = document.getElementsByClassName('checkbox');
+    for (let i = 0; i < boxes.length; i++){
+        boxes[i].addEventListener('click', (e) => completeItem(e))
+    }
+}
 
 let submitNewItemBtn = document.getElementById('submitNewItemBtn');
     submitNewItemBtn.addEventListener('click',()=> addToList())
@@ -286,7 +325,4 @@ let submitNewItemBtn = document.getElementById('submitNewItemBtn');
 
 
 
-
-displayProjects()
-btnControl()
 
