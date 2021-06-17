@@ -179,6 +179,7 @@ body {
     
 }
 
+
 .complete {
     color: gainsboro !important;
     
@@ -210,6 +211,16 @@ body {
     font-size: 13px;
     width: 90%;
 
+}
+
+.listContent{
+    width: 90%;
+}
+.timeUntil{
+    font-family: 'roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 200;
+    max-width: 150px;
 }
 
 .priority {

@@ -2,6 +2,7 @@ console.log('if you see me, everything is A O K')
 
 import btnControl from './btnControl.js';
 import {removeChildNodes, removeAllButOne} from './utility.js';
+import {format, formatDistanceToNow} from 'date-fns';
 
 let todayList = [
     {
@@ -235,8 +236,8 @@ function displayList(project) {
                 listItem.innerHTML += 
                     `<div class= "priority ${listArray[i].priority}"> </div>` + 
                     `<div class="checkbox" data="${i}">${checkBoxMark}</div>` +
-                    `<p> ${listArray[i].name} </p>` +
-                    `<p> ${listArray[i].date} </p>` 
+                    `<p class ='listContent'> ${listArray[i].name} </p>` +
+                    `<p class='timeUntil'> Due in  ${listArray[i].date} </p>` 
                     
 
             } else{
@@ -245,8 +246,8 @@ function displayList(project) {
                 listItem.innerHTML += 
                     `<div class= "priority ${listArray[i].priority}"> </div>` + 
                     `<div class="checkbox" data="${i}">${checkBoxMark}</div>`+
-                    `<p> ${listArray[i].name} </p>` +
-                    `<p> ${listArray[i].date} </p>` +
+                    `<p class= 'listContent'> ${listArray[i].name} </p>` +
+                    `<p class='timeUntil'> Due in ${listArray[i].date} </p>` +
                     `<div class="trash"><i class="fa fa-trash-o"></i></div>`
             }
            
@@ -263,14 +264,23 @@ function displayList(project) {
 function addToList(){
     let form = document.getElementById('newItemForm');
     let currentProject = findCurrentProj();
-    addNewDo(currentProject, form.listItemNew.value, form.priority.value, form.dueDate.value);
+
+    let date = form.dueDate.value.split('-');
+    date[0] = parseInt(date[0]);
+    date[1] = parseInt(date[1]);
+    date[1]-= 1;
+    date[2] = parseInt(date[2]);
+    let formattedDate = format(new Date(date[0],date[1],date[2]),  "MMMM do" );
+
+    let timeUntil = formatDistanceToNow(new Date(date[0], date[1], date[2]),{ addSuffix: true } )
+    
+    addNewDo(currentProject, form.listItemNew.value, form.priority.value, timeUntil);
     currentProject = findCurrentProj();
     populateAll()
     displayProjects();
     displayList(currentProject);
     form.reset();
 }
-
 
 
 //perhaps too tightly tied to displayList
@@ -294,6 +304,12 @@ function completeItem(e){
     populateAll();
     displayList(project);
 }
+
+
+
+
+
+
 
 
 
