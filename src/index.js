@@ -27,6 +27,7 @@ let projects = [
             date: '2018-10-03',
             dateSortable: 0,
             prioritySortable: 0,
+            priorityMemory: 1,
             timeUntil: 'one day',
             complete: false, 
             
@@ -39,6 +40,7 @@ let projects = [
             timeUntil: 'one day',
             dateSortable: 0,
             prioritySortable: 1,
+            priorityMemory: 1,
             complete: false, 
             
         },
@@ -48,6 +50,7 @@ let projects = [
             date: '2028-08-03',
             dateSortable: 0,
             prioritySortable: 2,
+            priorityMemory: 2,
             timeUntil: 'one day',
             complete: false, 
             
@@ -58,6 +61,7 @@ let projects = [
             date: '2021-08-03',
             dateSortable: 0,
             prioritySortable: 0,
+            priorityMemory: 0,
             timeUntil: 'one day',
             complete: false, 
             
@@ -75,6 +79,7 @@ let projects = [
             date: '2019-03-03',
             dateSortable: 20331002,
             prioritySortable: 0,
+            priorityMemory: 0,
             timeUntil: 'one day',
             complete: false, 
             
@@ -85,6 +90,7 @@ let projects = [
             date: '2018-08-03',
             dateSortable: 20230310,
             prioritySortable: 1,
+            priorityMemory: 1,
             timeUntil: 'one day',
             complete: false, 
             
@@ -95,6 +101,7 @@ let projects = [
             date: '2021-06-07',
             dateSortable: 20221201,
             prioritySortable: 2,
+            priorityMemory: 2,
             timeUntil: 'one day',
             complete: false, 
             
@@ -105,6 +112,7 @@ let projects = [
             date: '2018-08-03',
             dateSortable: 20211202,
             prioritySortable: 0,
+            priorityMemory: 0,
             timeUntil: 'one day',
             complete: false, 
             
@@ -212,6 +220,7 @@ function addNewDo(currentProject, name, priority, date){
     currentProject.list.push({
         name: name,
         priority: priority,
+        priorityMemory: priority,
         date: date,
         dateSortable: sortabled,
         prioritySortable: sortablep,
@@ -300,12 +309,20 @@ function addToList(){
 
 
 function completeItem(e){
-    console.log(e.target.getAttribute('data'))
     let item = e.target.getAttribute('data');
     let project = findCurrentProj();
 
-    project.list[item].complete ? project.list[item].complete = false : project.list[item].complete = true;
+    if (project.list[item].complete) {
+        project.list[item].complete = false;
+        project.list[item].prioritySortable = project.list[item].priorityMemory;
 
+
+
+     } else {
+        project.list[item].complete = true;
+        project.list[item].prioritySortable = 3;
+        project.list.push(project.list.splice(item, 1)[0]);
+     }
     populateAll();
     displayList(project);
 }
@@ -329,7 +346,6 @@ function sortByDate(){
 }
 
 function sortByPriority(){
-    console.log('sort priority')
 
     let project = findCurrentProj()
     //sort Array

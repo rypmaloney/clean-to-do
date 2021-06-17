@@ -276,6 +276,10 @@ body {
 .low {
     background-color: rgba(70, 185, 70, 0.781);
 } 
+
+.priorityComplete{
+    background-color: gray;
+}
 .trash  {
     align-self: center;
     font-size: 15px;
