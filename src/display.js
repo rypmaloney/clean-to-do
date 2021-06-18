@@ -92,7 +92,7 @@ function displayList(project) {
 
                 let tuntil = document.createElement('p');
                 tuntil.setAttribute('class', 'timeUntil');
-                tuntil.textContent = `due in ${listArray[i].timeUntil}`;
+                tuntil.textContent = listArray[i].timeUntil;
                 listItem.appendChild(tuntil);
 
             

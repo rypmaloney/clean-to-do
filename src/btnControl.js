@@ -1,4 +1,5 @@
 import { sub } from "date-fns";
+import { displayList } from "./display.js";
 import {deleteItem, findCurrentProj, sortByDate, sortByPriority, addToList, completeItem, projects, updateListItem} from "./index.js"
 import { removeChildNodes } from "./utility.js";
 
@@ -9,6 +10,7 @@ function btnControl(){
     submitNewItemBtn.addEventListener('click', function(){
         addToList(), 
         toggleItemForm()
+        enableEdit()
         
      });
     let add = document.getElementById('add');
@@ -34,7 +36,7 @@ function listListener() {
         boxes[i].addEventListener('click', (e) => completeItem(e))
     }
 
-    let content = document.getElementsByClassName('listContent');
+    let content = document.getElementsByClassName('listContent'); 
     for (let i = 0; i < content.length; i++){
         content[i].addEventListener('click', (e) => openEdit(e))
     }
@@ -60,6 +62,7 @@ function editListener(){
 
 
 function toggleItemForm(){
+    disableEdit()
     console.log('trying to toggle')
     let newItemSection = document.getElementById('new-item');
     let add = document.getElementById('add');
@@ -90,21 +93,42 @@ function addItemTransition(){
 
 }
 
-
-function openEdit(e){
+function disableEdit(){
     let content = document.getElementsByClassName('listContent');
     for (let i = 0; i < content.length; i++){
         content[i].style = 'pointer-events : none';
     }
+}
+
+function enableEdit(){
+    let content = document.getElementsByClassName('listContent');
+    for (let i = 0; i < content.length; i++){
+        content[i].style = 'pointer-events : all';
+    }
+}
+
+function cancelEdit(){
+    let form = document.getElementById('editItemForm');
+    let project = findCurrentProj()
+    form.stopPropagation();
+    document.body.addEventListener('click', () => displayList(project))
+
+    
+}
 
 
+
+function openEdit(e){
+    
+    disableEdit()
     let project = findCurrentProj()
     console.log(e.target.getAttribute('data'))
     let indexOfItem = e.target.getAttribute('data');
 
     let item = document.querySelector(`[data-name=${CSS.escape(indexOfItem)}]`);
-
     removeChildNodes(item);
+
+
     let box = document.createElement('div');
     box.setAttribute('class', 'checkbox');
     item.appendChild(box);
@@ -112,13 +136,15 @@ function openEdit(e){
     let editForm = document.createElement('form');
      //editForm.setAttribute('class', 'hide');
     editForm.setAttribute('id', 'editItemForm');
-    editForm.setAttribute('onSubmit', 'return false;')
+    editForm.setAttribute('onSubmit', 'return false;');
+    editForm.setAttribute('method', 'post');
     item.appendChild(editForm);
         
     let editText = document.createElement('input');
     editText.setAttribute('type', 'text');
     editText.setAttribute('class', 'listItemEdit')
     editText.setAttribute('value',  project.list[indexOfItem].name);
+    editText.setAttribute('autofocus','autofocus');
     editText.setAttribute('name', 'editName');
     editText.autofocus = true;
     editForm.appendChild(editText)
@@ -126,6 +152,7 @@ function openEdit(e){
     let editDate = document.createElement('input');
     editDate.setAttribute('type', 'date');
     editDate.setAttribute('name', 'dueDate');
+    editDate.setAttribute('value', project.list[indexOfItem].date);
     editDate.setAttribute('id', 'editDueDate');
     editForm.appendChild(editDate);
 
@@ -148,6 +175,15 @@ function openEdit(e){
         hig.setAttribute('value', "high");
         editPriority.appendChild(hig);
 
+
+        if (project.list[indexOfItem].priority === 'high'){
+            hig.setAttribute('selected','selected')
+        } else if (project.list[indexOfItem].priority === 'medium'){
+            med.setAttribute('selected','selected')
+        } else {
+            low.setAttribute('selected','selected')
+        }
+
     editForm.appendChild(editPriority)
 
     let subBtn = document.createElement('button');
@@ -159,6 +195,7 @@ function openEdit(e){
     editForm.appendChild(subBtn);
 
     editListener()
+    //cancelEdit()
 }
 
 

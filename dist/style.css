@@ -246,6 +246,7 @@ body {
     font-size: 13px;
     width: 90%;
 
+
 }
 
 .listContent{
@@ -426,6 +427,8 @@ body {
     box-sizing: border-box;
     font-family: 'comfortaa', sans-serif;
     font-style:italic;
+    font-weight: 100;
+    color:rgb(82, 63, 58);
 
 
 }

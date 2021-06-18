@@ -191,11 +191,14 @@ function findCurrentProj(){
 
 //LISTs
 function addNewDo(currentProject, name, priority, date){
-    let sortabled = dateToNumber(date)
-    let timeUntil = formatDateUntil(date)
-    // let split = date.split('-');
-    // split[1] -= 1;
-    // let timeUntil = formatDistanceToNow(new Date(split[0], split[1], split[2]),{ addSuffix: true } );
+    let sortabled = dateToNumber(date);
+    let timeUntil;
+
+    if (date == '' ){
+        timeUntil = ''
+    } else {
+     timeUntil = `due in ${formatDateUntil(date)}`
+    };
     
     let sortablep = 2;
     if(priority == 'high'){
@@ -222,8 +225,9 @@ function addNewDo(currentProject, name, priority, date){
 function addToList(){
     let form = document.getElementById('newItemForm');
     let currentProject = findCurrentProj();
-
     let date = form.dueDate.value;
+
+    
     
     addNewDo(currentProject, form.listItemNew.value, form.priority.value, date);
     currentProject = findCurrentProj();
@@ -244,9 +248,21 @@ function updateListItem(e){
     let date = form.dueDate.value
     let priority = form.priority.value;
 
-    let timeUntil = formatDateUntil(date)
+    let timeUntil 
     let sortabled = dateToNumber(date)
     
+
+    if (date == '' ){
+        timeUntil = ''
+    } else {
+     timeUntil = `due in ${formatDateUntil(date)}`
+    };
+
+
+
+
+
+
     
     let sortablep = 2;
     if(priority == 'high'){
