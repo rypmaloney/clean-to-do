@@ -61,7 +61,7 @@
           <div id='new-item'>
           
             <p id="add" >+ Add To Do</p>
-            <form id="newItemForm" class = 'hide'>
+            <form id="newItemForm" method='post' class = 'hide' onsubmit="return false;">
               <input type="text" id="newItemInput" name="listItemNew">
                 <div id='item-form-controls'>
                   <input type="date" id="dueDate" name="dueDate">
@@ -70,7 +70,7 @@
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
                   </select>
-                  <button type='button' id='submitNewItemBtn'>Enter</button>
+                  <button type='submit' value= 'submit' id='submitNewItemBtn'>Enter</button>
               </div>
             </form>
             

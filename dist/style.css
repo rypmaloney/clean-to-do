@@ -411,15 +411,16 @@ body {
   }
 
 
-.editItemForm{
+#editItemForm{
     width: 100%;
     margin: 0;
+    display: flex;
 }
 
 .listItemEdit{
     margin: 0 5% 0 0;
-    width: 70%;
-    min-width: 70%;
+    min-width: 50%;
+    margin-right: auto;
     border: none;
     padding: 10px 10px 10px 20px;
     box-sizing: border-box;
@@ -431,4 +432,32 @@ body {
 
 .listItemEdit:focus{
     outline:none;
+}
+
+#editDueDate {
+    height: 33px;
+    background-color: whitesmoke;
+    font-family: 'roboto', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    border: 1px solid white;
+    box-shadow: 1px 2px 1px gainsboro;
+    border-radius: 3px;
+    align-self: end;
+    margin-top: 3px;
+
+}
+
+#editSelect{
+    height: 33px;
+    width: 90px;
+    background-color: whitesmoke;
+    font-family: 'roboto', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    border: 1px solid white;
+    box-shadow: 1px 2px 1px gainsboro;
+    border-radius: 3px;
+    margin-left: 4px ;
+    margin-top: 3px;
 }

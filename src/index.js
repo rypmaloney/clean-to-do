@@ -192,9 +192,10 @@ function findCurrentProj(){
 //LISTs
 function addNewDo(currentProject, name, priority, date){
     let sortabled = dateToNumber(date)
-    let split = date.split('-');
-    split[1] -= 1;
-    let timeUntil = formatDistanceToNow(new Date(split[0], split[1], split[2]),{ addSuffix: true } );
+    let timeUntil = formatDateUntil(date)
+    // let split = date.split('-');
+    // split[1] -= 1;
+    // let timeUntil = formatDistanceToNow(new Date(split[0], split[1], split[2]),{ addSuffix: true } );
     
     let sortablep = 2;
     if(priority == 'high'){
@@ -222,7 +223,7 @@ function addToList(){
     let form = document.getElementById('newItemForm');
     let currentProject = findCurrentProj();
 
-    let date = form.dueDate.value
+    let date = form.dueDate.value;
     
     addNewDo(currentProject, form.listItemNew.value, form.priority.value, date);
     currentProject = findCurrentProj();
@@ -231,13 +232,48 @@ function addToList(){
     displayProjects();
     displayList(currentProject);
     form.reset();
-
+    return false;
 }
 
-function updateListItem(item){
 
+function updateListItem(e){
+    let indexOfItem = e.target.getAttribute('data');
+    let project = findCurrentProj();
+    let form = document.getElementById('editItemForm');
+    let item = project.list[indexOfItem]
+    let date = form.dueDate.value
+    let priority = form.priority.value;
 
+    let timeUntil = formatDateUntil(date)
+    let sortabled = dateToNumber(date)
     
+    
+    let sortablep = 2;
+    if(priority == 'high'){
+        sortablep = 0;
+    }else if (priority == 'medium'){
+        sortablep = 1
+    }else{ sortablep =2}
+
+
+    item.prioritySortable = sortablep;
+    item.dateSortable = sortabled;
+    item.name = form.editName.value;
+    item.priority = priority;
+    item.date = date;
+    item.timeUntil = timeUntil;
+
+    displayList(project);
+}
+
+
+
+function formatDateUntil(date){
+    let split = date.split('-');
+    split[1] -= 1;
+    let timeUntil = formatDistanceToNow(new Date(split[0], split[1], split[2]),{ addSuffix: true } );
+
+    return timeUntil
 }
 
 
@@ -330,4 +366,4 @@ loadSetup()
 
 
 
-export  {loadSetup, sortByDate, sortByPriority, addToList, completeItem,findCurrentProj, changeCurrentProj, projects};
+export  {loadSetup, sortByDate, sortByPriority, addToList, completeItem,findCurrentProj, changeCurrentProj, projects, updateListItem};

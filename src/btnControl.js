@@ -1,4 +1,5 @@
-import {deleteItem, findCurrentProj, sortByDate, sortByPriority, addToList, completeItem, projects} from "./index.js"
+import { sub } from "date-fns";
+import {deleteItem, findCurrentProj, sortByDate, sortByPriority, addToList, completeItem, projects, updateListItem} from "./index.js"
 import { removeChildNodes } from "./utility.js";
 
 
@@ -8,7 +9,8 @@ function btnControl(){
     submitNewItemBtn.addEventListener('click', function(){
         addToList(), 
         toggleItemForm()
-    });
+        
+     });
     let add = document.getElementById('add');
     add.addEventListener('click',()=> toggleItemForm())
 
@@ -37,6 +39,23 @@ function listListener() {
         content[i].addEventListener('click', (e) => openEdit(e))
     }
 }
+
+function editListener(){
+    let submit = document.getElementById('submitEditBtn')
+    submit.addEventListener('click', (e) => updateListItem(e))
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -92,14 +111,15 @@ function openEdit(e){
 
     let editForm = document.createElement('form');
      //editForm.setAttribute('class', 'hide');
-    editForm.setAttribute('class', 'editItemForm');
+    editForm.setAttribute('id', 'editItemForm');
+    editForm.setAttribute('onSubmit', 'return false;')
     item.appendChild(editForm);
         
     let editText = document.createElement('input');
     editText.setAttribute('type', 'text');
     editText.setAttribute('class', 'listItemEdit')
     editText.setAttribute('value',  project.list[indexOfItem].name);
-    //editText.setAttribute('placeholder', project.list[indexOfItem].name);
+    editText.setAttribute('name', 'editName');
     editText.autofocus = true;
     editForm.appendChild(editText)
 
@@ -112,9 +132,37 @@ function openEdit(e){
     let editPriority = document.createElement('select');
     editPriority.setAttribute('id', 'editSelect');
     editPriority.setAttribute('name', 'priority');
+
+        let low = document.createElement('option');
+        low.textContent = "Low";
+        low.setAttribute('value', "low");
+        editPriority.appendChild(low);
+
+        let med = document.createElement('option');
+        med.textContent = "Medium";
+        med.setAttribute('value', "medium");
+        editPriority.appendChild(med);
+
+        let hig = document.createElement('option');
+        hig.textContent = "High";
+        hig.setAttribute('value', "high");
+        editPriority.appendChild(hig);
+
     editForm.appendChild(editPriority)
 
+    let subBtn = document.createElement('button');
+    subBtn.setAttribute('type', 'submit');
+    subBtn.setAttribute('value', 'submit');
+    subBtn.setAttribute('id', 'submitEditBtn' )
+    subBtn.setAttribute('class', 'hide');
+    subBtn.setAttribute('data', indexOfItem);
+    editForm.appendChild(subBtn);
+
+    editListener()
 }
+
+
+
 
 
 //     <form id="newItemForm" class = 'hide'>
@@ -130,4 +178,4 @@ function openEdit(e){
             //   </div>
             // </form>
 
-export  {btnControl, listListener}
+export  {btnControl, listListener, editListener}
