@@ -67,7 +67,7 @@ function displayList(project) {
             let listItem = document.createElement('div');
             let addItem = document.getElementById('new-item');
             listItem.setAttribute('class', 'list-item');
-            listItem.setAttribute('data', i);
+            listItem.setAttribute('data-name', i);
             list.insertBefore(listItem, addItem);
             let checkBoxMark = ' ';
 
@@ -77,7 +77,6 @@ function displayList(project) {
             };
 
 
-                
 
                 let box = document.createElement('div');
                 box.setAttribute('class', 'checkbox');
@@ -86,13 +85,17 @@ function displayList(project) {
 
                 let cont = document.createElement('p');
                 cont.setAttribute('class', 'listContent');
+                cont.setAttribute('data', i);
                 cont.textContent = listArray[i].name;
                 listItem.appendChild(cont);
+
 
                 let tuntil = document.createElement('p');
                 tuntil.setAttribute('class', 'timeUntil');
                 tuntil.textContent = `due in ${listArray[i].timeUntil}`;
                 listItem.appendChild(tuntil);
+
+            
 
                 let pri =  document.createElement('div');
                 pri.setAttribute('class', `priority ${listArray[i].priority}`);
@@ -100,14 +103,14 @@ function displayList(project) {
 
 
 
-                if (project.name === 'All'){
-                    addItem = document.getElementById('new-item');
-                    addItem.classList.add('hide');
+            if (project.name === 'All'){
+                addItem = document.getElementById('new-item');
+                addItem.classList.add('hide');
     
     
-                } else{
-                    addItem = document.getElementById('new-item');
-                    addItem.classList.remove('hide');}
+            } else{
+                addItem = document.getElementById('new-item');
+                addItem.classList.remove('hide');}
 
           
                 // listItem.innerHTML += 

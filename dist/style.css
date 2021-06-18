@@ -113,7 +113,7 @@ body {
 }
 #dateSort{
 
-    margin-right: 10px;
+    margin-right: 5%;
 }
 
 #dateSort:hover, #prioritySort:hover{
@@ -219,6 +219,9 @@ body {
 .complete > p {
     text-decoration: line-through;
 }
+.complete > .priority{
+    background-color: rgba(128, 128, 128, 0.473);
+}
 
 
 .list-item:hover{
@@ -247,6 +250,7 @@ body {
 
 .listContent{
     width: 90%;
+    cursor: pointer;
 }
 .timeUntil{
     font-family: 'roboto', sans-serif;
@@ -264,7 +268,9 @@ body {
     align-self: center;
     height: 7px;
     width: 7px;
+    min-width: 7px;
     max-width: 7px;
+    margin-right: 4%;
     border-radius: 3px;
 
 }
@@ -405,4 +411,24 @@ body {
   }
 
 
+.editItemForm{
+    width: 100%;
+    margin: 0;
+}
 
+.listItemEdit{
+    margin: 0 5% 0 0;
+    width: 70%;
+    min-width: 70%;
+    border: none;
+    padding: 10px 10px 10px 20px;
+    box-sizing: border-box;
+    font-family: 'comfortaa', sans-serif;
+    font-style:italic;
+
+
+}
+
+.listItemEdit:focus{
+    outline:none;
+}
