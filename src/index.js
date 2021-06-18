@@ -1,7 +1,7 @@
 console.log('if you see me, everything is A O K')
 
 
-import btnControl from './btnControl.js';
+import {btnControl, listListener} from './btnControl.js';
 import {removeChildNodes, removeAllButOne} from './utility.js';
 import {format, formatDistanceToNow} from 'date-fns';
 
@@ -216,7 +216,6 @@ function addNewDo(currentProject, name, priority, date){
         sortablep = 1
     }else{ sortablep =2}
 
-
     currentProject.list.push({
         name: name,
         priority: priority,
@@ -278,10 +277,8 @@ function displayList(project) {
                     `<div class="trash"><i class="fa fa-trash-o"></i></div>`
             }
            
-        }
-        
-        addCheckListener()
-        btnControl()
+        }   
+    listListener()
 }
 
 
@@ -298,7 +295,6 @@ function addToList(){
     displayProjects();
     displayList(currentProject);
     form.reset();
-    btnControl()
 
 }
 
@@ -315,8 +311,6 @@ function completeItem(e){
     if (project.list[item].complete) {
         project.list[item].complete = false;
         project.list[item].prioritySortable = project.list[item].priorityMemory;
-
-
 
      } else {
         project.list[item].complete = true;
@@ -373,21 +367,21 @@ function loadSetup(){
     displayProjects()
     displayList(projects[0])
     btnControl()
-    addCheckListener()
+   // addCheckListener()
 }
 loadSetup()
 
-function addCheckListener(){
-    let boxes = document.getElementsByClassName('checkbox');
-    for (let i = 0; i < boxes.length; i++){
-        boxes[i].addEventListener('click', (e) => completeItem(e))
-    }
-}
+// function addCheckListener(){
+//     let boxes = document.getElementsByClassName('checkbox');
+//     for (let i = 0; i < boxes.length; i++){
+//         boxes[i].addEventListener('click', (e) => completeItem(e))
+//     }
+// }
 
-let submitNewItemBtn = document.getElementById('submitNewItemBtn');
-    submitNewItemBtn.addEventListener('click',()=> addToList())
-
-
+// let submitNewItemBtn = document.getElementById('submitNewItemBtn');
+//     submitNewItemBtn.addEventListener('click',()=> addToList())
 
 
-export  {loadSetup, sortByDate, sortByPriority};
+
+
+export  {loadSetup, sortByDate, sortByPriority, addToList, completeItem,findCurrentProj};

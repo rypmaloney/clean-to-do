@@ -258,10 +258,14 @@ body {
 
 .priority {
     /* height: 100%; */
-    align-self: stretch;
+    /* align-self: stretch;
     min-width: 2px;
-    border-radius: 1px;
-    
+    border-radius: 1px; */
+    align-self: center;
+    height: 7px;
+    width: 7px;
+    max-width: 7px;
+    border-radius: 3px;
 
 }
 
@@ -277,9 +281,7 @@ body {
     background-color: rgba(70, 185, 70, 0.781);
 } 
 
-.priorityComplete{
-    background-color: gray;
-}
+
 .trash  {
     align-self: center;
     font-size: 15px;

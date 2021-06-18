@@ -1,12 +1,16 @@
-import {deleteItem, findCurrentProj, sortByDate, sortByPriority} from "./index.js"
+import {deleteItem, findCurrentProj, sortByDate, sortByPriority, addToList, completeItem} from "./index.js"
 
 
 function btnControl(){
-    let add = document.getElementById('add');
-    add.addEventListener('click',()=> toggleItemForm())
+    
 
     let submitNewItemBtn = document.getElementById('submitNewItemBtn');
-    submitNewItemBtn.addEventListener('click', () => toggleItemForm());
+    submitNewItemBtn.addEventListener('click', function(){
+        addToList(), 
+        toggleItemForm()
+    });
+    let add = document.getElementById('add');
+    add.addEventListener('click',()=> toggleItemForm())
 
     let addProj = document.getElementById('addProj');
     addProj.addEventListener('click', () => toggleProjForm());
@@ -14,14 +18,23 @@ function btnControl(){
     let submitNewProjBtn = document.getElementById('submitNewProjBtn');
     submitNewProjBtn.addEventListener('click', () => toggleProjForm());
 
+}
+
+function listListener() {
     let sortByDateBtn = document.getElementById('dateSort')
     sortByDateBtn.addEventListener('click', () => sortByDate())
 
     let sortByPriorityBtn = document.getElementById('prioritySort')
     sortByPriorityBtn.addEventListener('click', () => sortByPriority())
+
+    let boxes = document.getElementsByClassName('checkbox');
+    for (let i = 0; i < boxes.length; i++){
+        boxes[i].addEventListener('click', (e) => completeItem(e))
+    }
 }
 
 function toggleItemForm(){
+    console.log('trying to toggle')
     let newItemSection = document.getElementById('new-item');
     let add = document.getElementById('add');
     let form = document.getElementById('newItemForm');
@@ -31,6 +44,7 @@ function toggleItemForm(){
 }
 
 function toggleProjForm(){
+    
     let newProjSection = document.getElementById('projectForm');
     let add = document.getElementById('addProj');
 
@@ -54,4 +68,4 @@ function addItemTransition(){
 
 
 
-export default btnControl
+export  {btnControl, listListener}
