@@ -3,7 +3,6 @@ import {deleteItem, findCurrentProj, sortByDate, sortByPriority, addToList, comp
 
 function btnControl(){
     
-
     let submitNewItemBtn = document.getElementById('submitNewItemBtn');
     submitNewItemBtn.addEventListener('click', function(){
         addToList(), 

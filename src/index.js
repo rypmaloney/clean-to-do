@@ -148,6 +148,7 @@ function populateAll(){
                 projects[0].list.push(projects[i].list[j])
         }
     }
+    sortAll()
 }
 
 function newProj(){ 
@@ -175,6 +176,7 @@ function changeCurrentProj(e){
     }
 
     projects[active].current = true;
+
 
     displayProjects()
     displayList(projects[active])
@@ -283,6 +285,12 @@ function sortByPriority(){
 
     console.log(project)
     displayList(project)
+}
+
+function sortAll(){
+    projects[0].list.sort(function(a, b) {
+        return a.prioritySortable - b.prioritySortable})
+
 }
 
 
