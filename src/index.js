@@ -3,7 +3,7 @@ console.log('if you see me, everything is A O K')
 
 import {btnControl, listListener} from './btnControl.js';
 import {removeChildNodes, removeAllButOne} from './utility.js';
-import {format, formatDistanceToNow} from 'date-fns';
+import {format, formatDistanceToNow, isToday} from 'date-fns';
 import {displayProjects, displayList} from './display.js'
 
 
@@ -22,51 +22,7 @@ let projects = [
         description: 'Tasks that need to be completed today',
         complete: false,
         current: false,
-        list: [{
-            name: 'This is my first toadfasf do',
-            priority: 'high',
-            date: '2018-10-03',
-            dateSortable: 0,
-            prioritySortable: 0,
-            priorityMemory: 1,
-            timeUntil: 'one day',
-            complete: false, 
-            
-            
-        },
-        {
-            name: 'This is my second to do',
-            priority: 'medium',
-            date: '2018-10-29',
-            timeUntil: 'one day',
-            dateSortable: 0,
-            prioritySortable: 1,
-            priorityMemory: 1,
-            complete: false, 
-            
-        },
-        {
-            name: 'This is my thiasdfasdfrd thing to do',
-            priority: 'low',
-            date: '2028-08-03',
-            dateSortable: 0,
-            prioritySortable: 2,
-            priorityMemory: 2,
-            timeUntil: 'one day',
-            complete: false, 
-            
-        },
-        {
-            name: 'This is my fourth thing to do',
-            priority: 'high',
-            date: '2021-08-03',
-            dateSortable: 0,
-            prioritySortable: 0,
-            priorityMemory: 0,
-            timeUntil: 'one day',
-            complete: false, 
-            
-        }]
+        list: []
         
     },
     {
@@ -138,7 +94,25 @@ const createProject = (name, description) => {
 }
 
 
+function populateToday(){
+let today = todaysDateNumber() //ymd
+    for (let i =0; i < projects.length; i++){
+        if (projects[i].name !== 'Today' && projects[i].name !== 'All'){
+            for (let j = 0; j < projects[i].list.length; j++){
 
+                let date = projects[i].list[j].date;
+                let split = date.split('-');
+                split[1] -= 1;
+                let splitNum = [Number(split[0]), Number(split[1]), Number(split[2])];
+                
+                if (isToday( new Date(splitNum[0], splitNum[1], splitNum[2])))
+                  projects[1].list.push(projects[i].list[j])
+                  projects[i].list[j].timeUntil = 'Due today!';
+        }
+    }
+
+}
+}
 
 function populateAll(){
     projects[0].list = [];
@@ -231,7 +205,7 @@ function addToList(){
     
     addNewDo(currentProject, form.listItemNew.value, form.priority.value, date);
     currentProject = findCurrentProj();
-
+    populateToday()
     populateAll()
     displayProjects();
     displayList(currentProject);
@@ -257,11 +231,6 @@ function updateListItem(e){
     } else {
      timeUntil = `due in ${formatDateUntil(date)}`
     };
-
-
-
-
-
 
     
     let sortablep = 2;
@@ -309,6 +278,7 @@ function completeItem(e){
         project.list[item].prioritySortable = 3;
         project.list.push(project.list.splice(item, 1)[0]);
      }
+     populateToday()
     populateAll();
     displayList(project);
 }
@@ -350,7 +320,18 @@ function sortAll(){
 }
 
 
+function todaysDateNumber(){
+//YEAR MONTH DAY
+    let d = new Date()
 
+    let fy = d.getFullYear()
+    let da = d.getDate()
+    let mo = d.getMonth()
+
+    let dateString = '' + fy + mo + da;
+
+    return Number(dateString)
+}
 
 function dateToNumber(dateString){
     let date = dateString.split('-');
@@ -361,6 +342,7 @@ function dateToNumber(dateString){
 
 
 function loadSetup(){
+    populateToday()
     populateAll()
     displayProjects()
     displayList(projects[0])

@@ -103,22 +103,16 @@ function displayList(project) {
 
 
 
-            if (project.name === 'All'){
-                addItem = document.getElementById('new-item');
-                addItem.classList.add('hide');
+            // if (project == projects[0]){
+            //     let addItem = document.getElementById('new-item');
+            //      addItem.classList.add('hide');
     
     
-            } else{
-                addItem = document.getElementById('new-item');
-                addItem.classList.remove('hide');}
+            //  } else{
+            //    let addItem = document.getElementById('new-item');
+            //     addItem.classList.remove('hide');}
 
           
-                // listItem.innerHTML += 
-                //     `<div class= "priority ${listArray[i].priority}"> </div>` + 
-                //     `<div class="checkbox" data="${i}">${checkBoxMark}</div>`+
-                //     `<p class= 'listContent'> ${listArray[i].name} </p>` +
-                //     `<p class='timeUntil'> Due in ${listArray[i].timeUntil} </p>` +
-                //     `<div class="trash"><i class="fa fa-trash-o"></i></div>`
             
            
         }   
