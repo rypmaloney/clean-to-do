@@ -1,9 +1,6 @@
 import { removeChildNodes, removeAllButOne } from "./utility";
-
 import {changeCurrentProj, findCurrentProj, projects} from './index.js'
-
 import { listListener, editListener, disableEdit } from "./btnControl";
-
 
 function displayProjects(){
     let projectsList = document.getElementById('projects-wrapper');
@@ -37,9 +34,7 @@ function displayProjects(){
                 let addItem = document.getElementById('new-item');
                 addItem.classList.remove('hide');
             }
-    
-        }
-
+    }
 };
 
 
@@ -206,10 +201,6 @@ function displayEdit(e){
     editListener()
     //cancelEdit()
 }
-
-
-
-
 
 
 export  {displayList, displayProjects, displayEdit}

@@ -1,4 +1,3 @@
-
 import {btnControl} from './btnControl.js';
 import { dateToNumber, todaysDateNumber} from './utility.js';
 import { formatDistanceToNow, isToday, isThisWeek} from 'date-fns';
@@ -6,10 +5,53 @@ import {displayProjects, displayList} from './display.js'
 console.log('if you see me, everything is A O K')
 
 
+
+function setLocal() {
+    localStorage.setItem('projects', JSON.stringify(projects))
+}
+
+//retreive local storage
+function populateLocal() {
+  projects = JSON.parse(localStorage.getItem("projects"));
+  if (projects === null) {
+      projects = [
+        {
+            name: "All",
+            description: 'All to-do items. Create a project and add items to populate this list',
+            complete: false,
+            current: true,
+            list: [],
+            
+        },
+        {
+            name: "Today",
+            description: 'Tasks that need to be completed today',
+            complete: false,
+            current: false,
+            list: [],
+            
+        },
+        {
+            name: "This week",
+            description: 'Tasks that need to be completed this week',
+            complete: false,
+            current: false,
+            list: [],
+            
+        },
+    ]
+  }
+
+}
+
+
+
+
+
 let projects = [
     {
         name: "All",
-        description: 'All to-do items',
+        description: 'All to-do items. Create a project and add items to populate this list',
         complete: false,
         current: true,
         list: [],
@@ -20,7 +62,7 @@ let projects = [
         description: 'Tasks that need to be completed today',
         complete: false,
         current: false,
-        list: []
+        list: [],
         
     },
     {
@@ -28,54 +70,13 @@ let projects = [
         description: 'Tasks that need to be completed this week',
         complete: false,
         current: false,
-        list: [{
-            name: 'This is my first to do',
-            priority: 'high',
-            date: '2019-03-03',
-            dateSortable: 20331002,
-            prioritySortable: 0,
-            priorityMemory: 0,
-            timeUntil: 'one day',
-            complete: false, 
-            
-        },
-        {
-            name: 'This is my second to do',
-            priority: 'medium',
-            date: '2018-08-03',
-            dateSortable: 20230310,
-            prioritySortable: 1,
-            priorityMemory: 1,
-            timeUntil: 'one day',
-            complete: false, 
-            
-        },
-        {
-            name: 'This is my thirdasfd thing to do',
-            priority: 'low',
-            date: '2021-06-07',
-            dateSortable: 20221201,
-            prioritySortable: 2,
-            priorityMemory: 2,
-            timeUntil: 'one day',
-            complete: false, 
-            
-        },
-        {
-            name: 'This is my fourth thing to do',
-            priority: 'high',
-            date: '2018-08-03',
-            dateSortable: 20211202,
-            prioritySortable: 0,
-            priorityMemory: 0,
-            timeUntil: 'one day',
-            complete: false, 
-            
-        }]
+        list: [],
         
     },
 ]
 
+
+//loadSetup()
  
 //PROJECTS
 const createProject = (name, description) => {
@@ -235,6 +236,7 @@ function addToList(){
     displayProjects();
     displayList(currentProject);
     form.reset();
+    setLocal()
     return false;
 }
 
@@ -344,6 +346,7 @@ function sortAll(){
 }
 
 function loadSetup(){
+    populateLocal()
     populateThisWeek()
     populateToday()
     populateAll()

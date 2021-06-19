@@ -1,6 +1,6 @@
 
 import { displayList, displayEdit } from "./display.js";
-import {findCurrentProj, sortByDate, sortByPriority, addToList, completeItem, updateListItem, newProj} from "./index.js"
+import {findCurrentProj, sortByDate, sortByPriority, addToList, completeItem, updateListItem, newProj, projects} from "./index.js"
 
 
 
