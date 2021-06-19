@@ -2,7 +2,7 @@ import { removeChildNodes, removeAllButOne } from "./utility";
 
 import {changeCurrentProj, findCurrentProj, projects} from './index.js'
 
-import { listListener } from "./btnControl";
+import { listListener, editListener, disableEdit } from "./btnControl";
 
 
 function displayProjects(){
@@ -71,11 +71,6 @@ function displayList(project) {
     sortp.textContent = 'Sort by priority';
     titleSpace.appendChild(sortp);
 
-
-
-
-    
-
     //CREATE LIST ITSELF 
     let listArray = project.list;
 
@@ -132,7 +127,89 @@ function displayList(project) {
 
 
 
+function displayEdit(e){
+    
+    disableEdit()
+    let project = findCurrentProj()
+    console.log(e.target.getAttribute('data'))
+    let indexOfItem = e.target.getAttribute('data');
+
+    let item = document.querySelector(`[data-name=${CSS.escape(indexOfItem)}]`);
+    removeChildNodes(item);
+
+
+    let box = document.createElement('div');
+    box.setAttribute('class', 'checkbox');
+    item.appendChild(box);
+
+    let editForm = document.createElement('form');
+     //editForm.setAttribute('class', 'hide');
+    editForm.setAttribute('id', 'editItemForm');
+    editForm.setAttribute('onSubmit', 'return false;');
+    editForm.setAttribute('method', 'post');
+    item.appendChild(editForm);
+        
+    let editText = document.createElement('input');
+    editText.setAttribute('type', 'text');
+    editText.setAttribute('class', 'listItemEdit')
+    editText.setAttribute('value',  project.list[indexOfItem].name);
+    editText.setAttribute('autofocus','autofocus');
+    editText.setAttribute('name', 'editName');
+    editText.autofocus = true;
+    editForm.appendChild(editText)
+
+    let editDate = document.createElement('input');
+    editDate.setAttribute('type', 'date');
+    editDate.setAttribute('name', 'dueDate');
+    editDate.setAttribute('value', project.list[indexOfItem].date);
+    editDate.setAttribute('id', 'editDueDate');
+    editForm.appendChild(editDate);
+
+    let editPriority = document.createElement('select');
+    editPriority.setAttribute('id', 'editSelect');
+    editPriority.setAttribute('name', 'priority');
+
+        let low = document.createElement('option');
+        low.textContent = "Low";
+        low.setAttribute('value', "low");
+        editPriority.appendChild(low);
+
+        let med = document.createElement('option');
+        med.textContent = "Medium";
+        med.setAttribute('value', "medium");
+        editPriority.appendChild(med);
+
+        let hig = document.createElement('option');
+        hig.textContent = "High";
+        hig.setAttribute('value', "high");
+        editPriority.appendChild(hig);
+
+
+        if (project.list[indexOfItem].priority === 'high'){
+            hig.setAttribute('selected','selected')
+        } else if (project.list[indexOfItem].priority === 'medium'){
+            med.setAttribute('selected','selected')
+        } else {
+            low.setAttribute('selected','selected')
+        }
+
+    editForm.appendChild(editPriority)
+
+    let subBtn = document.createElement('button');
+    subBtn.setAttribute('type', 'submit');
+    subBtn.setAttribute('value', 'submit');
+    subBtn.setAttribute('id', 'submitEditBtn' )
+    subBtn.setAttribute('class', 'hide');
+    subBtn.setAttribute('data', indexOfItem);
+    editForm.appendChild(subBtn);
+
+    editListener()
+    //cancelEdit()
+}
 
 
 
-export  {displayList, displayProjects}
+
+
+
+export  {displayList, displayProjects, displayEdit}

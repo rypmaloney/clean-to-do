@@ -1,11 +1,9 @@
-console.log('if you see me, everything is A O K')
 
-
-import {btnControl, listListener} from './btnControl.js';
-import {removeChildNodes, removeAllButOne} from './utility.js';
-import {format, formatDistanceToNow, isToday, isThisWeek} from 'date-fns';
+import {btnControl} from './btnControl.js';
+import { dateToNumber, todaysDateNumber} from './utility.js';
+import { formatDistanceToNow, isToday, isThisWeek} from 'date-fns';
 import {displayProjects, displayList} from './display.js'
-
+console.log('if you see me, everything is A O K')
 
 
 let projects = [
@@ -162,8 +160,7 @@ function newProj(){
 }
 
 
-let projSubmitBtn = document.getElementById('submitNewProjBtn');
-projSubmitBtn.addEventListener('click', () => newProj())
+
 
 
 
@@ -306,8 +303,8 @@ function completeItem(e){
         project.list[item].prioritySortable = 3;
         project.list.push(project.list.splice(item, 1)[0]);
      }
-     populateToday()
-    populateAll();
+    //populateToday()
+    //populateAll();
     displayList(project);
 }
 
@@ -330,7 +327,6 @@ function sortByDate(){
 }
 
 function sortByPriority(){
-
     let project = findCurrentProj()
     //sort Array
     project.list.sort(function(a, b) {
@@ -347,28 +343,6 @@ function sortAll(){
 
 }
 
-
-function todaysDateNumber(){
-//YEAR MONTH DAY
-    let d = new Date()
-
-    let fy = d.getFullYear()
-    let da = d.getDate()
-    let mo = d.getMonth()
-
-    let dateString = '' + fy + mo + da;
-
-    return Number(dateString)
-}
-
-function dateToNumber(dateString){
-    let date = dateString.split('-');
-     return Number(date[0]+date[1]+date[2]);
- 
- }
-
-
-
 function loadSetup(){
     populateThisWeek()
     populateToday()
@@ -376,21 +350,13 @@ function loadSetup(){
     displayProjects()
     displayList(projects[0])
     btnControl()
-   // addCheckListener()
 }
 loadSetup()
 
-// function addCheckListener(){
-//     let boxes = document.getElementsByClassName('checkbox');
-//     for (let i = 0; i < boxes.length; i++){
-//         boxes[i].addEventListener('click', (e) => completeItem(e))
-//     }
-// }
-
-// let submitNewItemBtn = document.getElementById('submitNewItemBtn');
-//     submitNewItemBtn.addEventListener('click',()=> addToList())
+export  { sortByDate, sortByPriority, addToList, completeItem,findCurrentProj, changeCurrentProj, projects, updateListItem, newProj, loadSetup};
 
 
 
 
-export  {loadSetup, sortByDate, sortByPriority, addToList, completeItem,findCurrentProj, changeCurrentProj, projects, updateListItem};
+
+

@@ -7,13 +7,22 @@ body {
 #header-wrapper{
     height: 45px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-items: end;
     background-color: whitesmoke;
     border-bottom: solid 1px rgb(221, 219, 219);
     box-shadow: 6px 6px 2px aliceblue;
     border-top: solid 3px rgb(119, 168, 121);
 }
+
+#question{
+    margin-left: 94%;
+    align-self: center;
+    color: rgb(91, 112, 85);
+    font-family: 'roboto', sans-serif;
+    font-size: 12px;
+}
+
 #header-wrapper div {
     width: 100px;
     margin: auto;
@@ -64,6 +73,7 @@ body {
     flex: 1 0 auto;
     /* flex-grow: 5; */
     flex-direction: column;
+    margin-bottom: 50px;
 
     
     
@@ -469,11 +479,12 @@ body {
     display: flex;
     margin: 10px;
     align-self:flex-end;
-    max-width: 60px;
+    max-width: 200px;
     height: 30px;
     border: none;
     background-color: white;
     font-family: 'roboto', sans-serif;
     font-size: 10px;
     padding-top: 2px;
+    font-weight: 200;
 }

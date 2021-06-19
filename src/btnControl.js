@@ -1,11 +1,13 @@
-import { sub } from "date-fns";
-import { displayList } from "./display.js";
-import {deleteItem, findCurrentProj, sortByDate, sortByPriority, addToList, completeItem, projects, updateListItem} from "./index.js"
-import { removeChildNodes } from "./utility.js";
+
+import { displayList, displayEdit } from "./display.js";
+import {findCurrentProj, sortByDate, sortByPriority, addToList, completeItem, updateListItem, newProj} from "./index.js"
+
 
 
 function btnControl(){
-    
+    let projSubmitBtn = document.getElementById('submitNewProjBtn');
+    projSubmitBtn.addEventListener('click', () => newProj())
+
     let submitNewItemBtn = document.getElementById('submitNewItemBtn');
     submitNewItemBtn.addEventListener('click', function(){
         addToList(), 
@@ -38,7 +40,7 @@ function listListener() {
 
     let content = document.getElementsByClassName('listContent'); 
     for (let i = 0; i < content.length; i++){
-        content[i].addEventListener('click', (e) => openEdit(e))
+        content[i].addEventListener('click', (e) => displayEdit(e))
     }
 }
 
@@ -63,7 +65,6 @@ function editListener(){
 
 function toggleItemForm(){
     disableEdit()
-    console.log('trying to toggle')
     let newItemSection = document.getElementById('new-item');
     let add = document.getElementById('add');
     let form = document.getElementById('newItemForm');
@@ -118,101 +119,4 @@ function cancelEdit(){
 
 
 
-function openEdit(e){
-    
-    disableEdit()
-    let project = findCurrentProj()
-    console.log(e.target.getAttribute('data'))
-    let indexOfItem = e.target.getAttribute('data');
-
-    let item = document.querySelector(`[data-name=${CSS.escape(indexOfItem)}]`);
-    removeChildNodes(item);
-
-
-    let box = document.createElement('div');
-    box.setAttribute('class', 'checkbox');
-    item.appendChild(box);
-
-    let editForm = document.createElement('form');
-     //editForm.setAttribute('class', 'hide');
-    editForm.setAttribute('id', 'editItemForm');
-    editForm.setAttribute('onSubmit', 'return false;');
-    editForm.setAttribute('method', 'post');
-    item.appendChild(editForm);
-        
-    let editText = document.createElement('input');
-    editText.setAttribute('type', 'text');
-    editText.setAttribute('class', 'listItemEdit')
-    editText.setAttribute('value',  project.list[indexOfItem].name);
-    editText.setAttribute('autofocus','autofocus');
-    editText.setAttribute('name', 'editName');
-    editText.autofocus = true;
-    editForm.appendChild(editText)
-
-    let editDate = document.createElement('input');
-    editDate.setAttribute('type', 'date');
-    editDate.setAttribute('name', 'dueDate');
-    editDate.setAttribute('value', project.list[indexOfItem].date);
-    editDate.setAttribute('id', 'editDueDate');
-    editForm.appendChild(editDate);
-
-    let editPriority = document.createElement('select');
-    editPriority.setAttribute('id', 'editSelect');
-    editPriority.setAttribute('name', 'priority');
-
-        let low = document.createElement('option');
-        low.textContent = "Low";
-        low.setAttribute('value', "low");
-        editPriority.appendChild(low);
-
-        let med = document.createElement('option');
-        med.textContent = "Medium";
-        med.setAttribute('value', "medium");
-        editPriority.appendChild(med);
-
-        let hig = document.createElement('option');
-        hig.textContent = "High";
-        hig.setAttribute('value', "high");
-        editPriority.appendChild(hig);
-
-
-        if (project.list[indexOfItem].priority === 'high'){
-            hig.setAttribute('selected','selected')
-        } else if (project.list[indexOfItem].priority === 'medium'){
-            med.setAttribute('selected','selected')
-        } else {
-            low.setAttribute('selected','selected')
-        }
-
-    editForm.appendChild(editPriority)
-
-    let subBtn = document.createElement('button');
-    subBtn.setAttribute('type', 'submit');
-    subBtn.setAttribute('value', 'submit');
-    subBtn.setAttribute('id', 'submitEditBtn' )
-    subBtn.setAttribute('class', 'hide');
-    subBtn.setAttribute('data', indexOfItem);
-    editForm.appendChild(subBtn);
-
-    editListener()
-    //cancelEdit()
-}
-
-
-
-
-
-//     <form id="newItemForm" class = 'hide'>
-            //   <input type="text" id="newItemInput" name="listItemNew">
-            //     <div id='item-form-controls'>
-            //       <input type="date" id="dueDate" name="dueDate">
-            //       <select id="select" name="priority">
-            //         <option value="low">Low Priority</option>
-            //         <option value="medium">Medium</option>
-            //         <option value="high">High</option>
-            //       </select>
-            //       <button type='button' id='submitNewItemBtn'>Enter</button>
-            //   </div>
-            // </form>
-
-export  {btnControl, listListener, editListener}
+export  {btnControl, listListener, editListener, disableEdit}
