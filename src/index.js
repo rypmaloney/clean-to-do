@@ -3,7 +3,7 @@ console.log('if you see me, everything is A O K')
 
 import {btnControl, listListener} from './btnControl.js';
 import {removeChildNodes, removeAllButOne} from './utility.js';
-import {format, formatDistanceToNow, isToday} from 'date-fns';
+import {format, formatDistanceToNow, isToday, isThisWeek} from 'date-fns';
 import {displayProjects, displayList} from './display.js'
 
 
@@ -95,9 +95,10 @@ const createProject = (name, description) => {
 
 
 function populateToday(){
-let today = todaysDateNumber() //ymd
-    for (let i =0; i < projects.length; i++){
-        if (projects[i].name !== 'Today' && projects[i].name !== 'All'){
+    projects[1].list = []
+    let today = todaysDateNumber() //ymd
+    for (let i =3; i < projects.length; i++){
+
             for (let j = 0; j < projects[i].list.length; j++){
 
                 let date = projects[i].list[j].date;
@@ -105,18 +106,43 @@ let today = todaysDateNumber() //ymd
                 split[1] -= 1;
                 let splitNum = [Number(split[0]), Number(split[1]), Number(split[2])];
                 
-                if (isToday( new Date(splitNum[0], splitNum[1], splitNum[2])))
+                if (isToday( new Date(splitNum[0], splitNum[1], splitNum[2]))){
                   projects[1].list.push(projects[i].list[j])
-                  projects[i].list[j].timeUntil = 'Due today!';
-        }
+                  projects[i].list[j].timeUntil = 'Due today';
+    
+
+                }
+            }
+        
     }
+} 
+
+
+function populateThisWeek(){
+     projects[2].list = [];
+     let today = todaysDateNumber() //ymd
+     for (let i =3; i < projects.length; i++){
+             for (let j = 0; j < projects[i].list.length; j++){
+
+                 let date = projects[i].list[j].date;
+                 let split = date.split('-');
+                 split[1] -= 1;
+                 let splitNum = [Number(split[0]), Number(split[1]), Number(split[2])];
+                
+                 if (isThisWeek( new Date(splitNum[0], splitNum[1], splitNum[2]))){
+                   projects[2].list.push(projects[i].list[j])
+                 }
+             }
+           
+     }
 
 }
-}
+
+
 
 function populateAll(){
     projects[0].list = [];
-    for (let i =0; i < projects.length; i++){
+    for (let i = 3; i < projects.length; i++){
         if (projects[i].name !== 'All'){
             for (let j = 0; j < projects[i].list.length; j++)
                 projects[0].list.push(projects[i].list[j])
@@ -185,6 +211,7 @@ function addNewDo(currentProject, name, priority, date){
         name: name,
         priority: priority,
         priorityMemory: priority,
+        projMemory: currentProject.name,
         date: date,
         dateSortable: sortabled,
         prioritySortable: sortablep,
@@ -205,6 +232,7 @@ function addToList(){
     
     addNewDo(currentProject, form.listItemNew.value, form.priority.value, date);
     currentProject = findCurrentProj();
+    populateThisWeek()
     populateToday()
     populateAll()
     displayProjects();
@@ -342,6 +370,7 @@ function dateToNumber(dateString){
 
 
 function loadSetup(){
+    populateThisWeek()
     populateToday()
     populateAll()
     displayProjects()

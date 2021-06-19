@@ -464,3 +464,16 @@ body {
     margin-left: 4px ;
     margin-top: 3px;
 }
+
+.proj {
+    display: flex;
+    margin: 10px;
+    align-self:flex-end;
+    max-width: 60px;
+    height: 30px;
+    border: none;
+    background-color: white;
+    font-family: 'roboto', sans-serif;
+    font-size: 10px;
+    padding-top: 2px;
+}

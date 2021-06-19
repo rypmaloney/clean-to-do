@@ -1,6 +1,6 @@
 import { removeChildNodes, removeAllButOne } from "./utility";
 
-import {changeCurrentProj, projects} from './index.js'
+import {changeCurrentProj, findCurrentProj, projects} from './index.js'
 
 import { listListener } from "./btnControl";
 
@@ -26,8 +26,20 @@ function displayProjects(){
         projItem.appendChild(numberOfItems);
 
         if (i === 2) {projItem.style.marginBottom = "30px"}
-       projItem.addEventListener('click', (e) => {changeCurrentProj(e)})   
-    }
+       projItem.addEventListener('click', (e) => {changeCurrentProj(e)})  
+     
+            // HIDE 'ADD TO LIST'
+           let current = findCurrentProj()
+           if (current == projects[0] || current == projects[1] || current == projects[2]){
+               let addItem = document.getElementById('new-item');
+                addItem.setAttribute('class', 'hide');
+            } else{
+                let addItem = document.getElementById('new-item');
+                addItem.classList.remove('hide');
+            }
+    
+        }
+
 };
 
 
@@ -60,6 +72,10 @@ function displayList(project) {
     titleSpace.appendChild(sortp);
 
 
+
+
+    
+
     //CREATE LIST ITSELF 
     let listArray = project.list;
 
@@ -89,6 +105,14 @@ function displayList(project) {
                 cont.textContent = listArray[i].name;
                 listItem.appendChild(cont);
 
+                let current = findCurrentProj()
+                if (current == projects[0] || current == projects[1] || current == projects[2]){
+                    let proj = document.createElement('p');
+                    proj.setAttribute('class', 'proj');
+                    proj.textContent = listArray[i].projMemory;
+                    listItem.appendChild(proj);
+                }
+
 
                 let tuntil = document.createElement('p');
                 tuntil.setAttribute('class', 'timeUntil');
@@ -101,20 +125,7 @@ function displayList(project) {
                 pri.setAttribute('class', `priority ${listArray[i].priority}`);
                 listItem.appendChild(pri);
 
-
-
-            // if (project == projects[0]){
-            //     let addItem = document.getElementById('new-item');
-            //      addItem.classList.add('hide');
-    
-    
-            //  } else{
-            //    let addItem = document.getElementById('new-item');
-            //     addItem.classList.remove('hide');}
-
-          
-            
-           
+                   
         }   
     listListener()
 }
