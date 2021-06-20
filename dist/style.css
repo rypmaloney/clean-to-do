@@ -499,6 +499,10 @@ body {
     border: 1px solid rgb(126, 151, 122);
     width: 60%; 
   }
+  
+  .about-content > p {
+      font-size: 13px;
+  }
 
   .close {
     color: #aaa;
