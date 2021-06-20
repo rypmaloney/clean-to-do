@@ -480,7 +480,7 @@ body {
 
 
 .modal {
-    display: none; 
+    display: block; 
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -501,7 +501,10 @@ body {
   }
   
   .about-content > p {
-      font-size: 13px;
+      font-size: 15px;
+      font-family: 'roboto', sans-serif;
+      font-weight: 200;
+      margin-top: 5px;
   }
 
   .close {
