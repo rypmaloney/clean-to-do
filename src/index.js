@@ -53,7 +53,7 @@ let projects = [
         name: "All",
         description: 'All to-do items. Create a project and add items to populate this list',
         complete: false,
-        current: true,
+        current: false,
         list: [],
         
     },
@@ -111,11 +111,9 @@ function populateToday(){
     
 
                 }
-            }
-        
+            }   
     }
 } 
-
 
 function populateThisWeek(){
      projects[2].list = [];
@@ -136,8 +134,6 @@ function populateThisWeek(){
      }
 
 }
-
-
 
 function populateAll(){
     projects[0].list = [];
@@ -160,11 +156,6 @@ function newProj(){
     form.reset()
 }
 
-
-
-
-
-
 function changeCurrentProj(e){
     let active = e.target.getAttribute("data");
     console.log(active)
@@ -184,8 +175,6 @@ function findCurrentProj(){
     for(let i = 0; i < projects.length; i++)
         if (projects[i].current) return projects[i]   
 }
-
-
 
 //LISTs
 function addNewDo(currentProject, name, priority, date){
@@ -218,16 +207,12 @@ function addNewDo(currentProject, name, priority, date){
     })
 }
 
-
-
-
 function addToList(){
     let form = document.getElementById('newItemForm');
     let currentProject = findCurrentProj();
     let date = form.dueDate.value;
 
-    
-    
+      
     addNewDo(currentProject, form.listItemNew.value, form.priority.value, date);
     currentProject = findCurrentProj();
     populateThisWeek()
@@ -240,7 +225,6 @@ function addToList(){
     return false;
 }
 
-
 function updateListItem(e){
     let indexOfItem = e.target.getAttribute('data');
     let project = findCurrentProj();
@@ -252,14 +236,12 @@ function updateListItem(e){
     let timeUntil 
     let sortabled = dateToNumber(date)
     
-
     if (date == '' ){
         timeUntil = ''
     } else {
      timeUntil = `due in ${formatDateUntil(date)}`
     };
-
-    
+   
     let sortablep = 2;
     if(priority == 'high'){
         sortablep = 0;
@@ -278,8 +260,6 @@ function updateListItem(e){
     displayList(project);
 }
 
-
-
 function formatDateUntil(date){
     let split = date.split('-');
     split[1] -= 1;
@@ -287,10 +267,6 @@ function formatDateUntil(date){
 
     return timeUntil
 }
-
-
-
-
 
 function completeItem(e){
     let item = e.target.getAttribute('data');
@@ -307,6 +283,7 @@ function completeItem(e){
      }
     //populateToday()
     //populateAll();
+    setLocal()
     displayList(project);
 }
 

@@ -114,12 +114,10 @@ function displayList(project) {
                 let pri =  document.createElement('div');
                 pri.setAttribute('class', `priority ${listArray[i].priority}`);
                 listItem.appendChild(pri);
-
                    
         }   
     listListener()
 }
-
 
 
 function displayEdit(e){
@@ -179,7 +177,6 @@ function displayEdit(e){
         hig.setAttribute('value', "high");
         editPriority.appendChild(hig);
 
-
         if (project.list[indexOfItem].priority === 'high'){
             hig.setAttribute('selected','selected')
         } else if (project.list[indexOfItem].priority === 'medium'){
@@ -197,6 +194,7 @@ function displayEdit(e){
     subBtn.setAttribute('class', 'hide');
     subBtn.setAttribute('data', indexOfItem);
     editForm.appendChild(subBtn);
+
 
     editListener()
     //cancelEdit()

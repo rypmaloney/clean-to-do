@@ -24,6 +24,12 @@ function btnControl(){
     let submitNewProjBtn = document.getElementById('submitNewProjBtn');
     submitNewProjBtn.addEventListener('click', () => toggleProjForm());
 
+    let aboutBtn = document.getElementById('question');
+    aboutBtn.addEventListener('click', ()=> openModal())
+
+    let closeModalBtn = document.getElementById('closeModal');
+    closeModalBtn.addEventListener('click', () => closeModal())
+
 }
 
 function listListener() {
@@ -53,6 +59,23 @@ function editListener(){
 
 
 
+function openModal(){
+    let about = document.getElementById('aboutModal');
+
+    about.style.display ='block';
+
+    window.onclick = function(event) {
+        if (event.target == about) {
+          about.style.display = "none";
+        }
+      }
+}
+
+
+function closeModal(){
+    let about = document.getElementById('aboutModal');
+        about.style.display = "none";
+}
 
 
 
