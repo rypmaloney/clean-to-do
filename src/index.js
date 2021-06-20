@@ -17,7 +17,7 @@ function populateLocal() {
       projects = [
         {
             name: "All",
-            description: 'All to-do items. Create a project and add items to populate this list',
+            description: 'All to-do items. Create a project and add items to populate this list.',
             complete: false,
             current: true,
             list: [],
@@ -25,7 +25,7 @@ function populateLocal() {
         },
         {
             name: "Today",
-            description: 'Tasks that need to be completed today',
+            description: 'Tasks due today.',
             complete: false,
             current: false,
             list: [],
@@ -33,7 +33,7 @@ function populateLocal() {
         },
         {
             name: "This week",
-            description: 'Tasks that need to be completed this week',
+            description: 'Tasks due this week.',
             complete: false,
             current: false,
             list: [],
@@ -51,7 +51,7 @@ function populateLocal() {
 let projects = [
     {
         name: "All",
-        description: 'All to-do items. Create a project and add items to populate this list',
+        description: 'All to-do items. Create a project and add items to populate this list.',
         complete: false,
         current: false,
         list: [],
@@ -59,7 +59,7 @@ let projects = [
     },
     {
         name: "Today",
-        description: 'Tasks that need to be completed today',
+        description: 'Tasks due today.',
         complete: false,
         current: false,
         list: [],
@@ -67,7 +67,7 @@ let projects = [
     },
     {
         name: "This week",
-        description: 'Tasks that need to be completed this week',
+        description: 'Tasks due today.',
         complete: false,
         current: false,
         list: [],
@@ -75,10 +75,7 @@ let projects = [
     },
 ]
 
-
-//loadSetup()
- 
-//PROJECTS
+/*******PROJECT CONTROL******/
 const createProject = (name, description) => {
     projects.push(
         {
@@ -176,7 +173,7 @@ function findCurrentProj(){
         if (projects[i].current) return projects[i]   
 }
 
-//LISTs
+/*******LIST CONTROL******/
 function addNewDo(currentProject, name, priority, date){
     let sortabled = dateToNumber(date);
     let timeUntil;
@@ -281,8 +278,6 @@ function completeItem(e){
         project.list[item].prioritySortable = 3;
         project.list.push(project.list.splice(item, 1)[0]);
      }
-    //populateToday()
-    //populateAll();
     setLocal()
     displayList(project);
 }
@@ -307,7 +302,7 @@ function sortByDate(){
 
 function sortByPriority(){
     let project = findCurrentProj()
-    //sort Array
+
     project.list.sort(function(a, b) {
         return a.prioritySortable - b.prioritySortable})
     project = findCurrentProj()

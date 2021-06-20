@@ -16,7 +16,6 @@ function removeAllButOne(parent) {
 
 
 function todaysDateNumber(){
-    //YEAR MONTH DAY
         let d = new Date()
     
         let fy = d.getFullYear()
