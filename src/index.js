@@ -328,7 +328,8 @@ function loadSetup(){
     populateToday()
     populateAll()
     displayProjects()
-    displayList(projects[0])
+    let current = findCurrentProj()
+    displayList(current)
     btnControl()
 }
 loadSetup()
