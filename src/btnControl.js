@@ -1,6 +1,6 @@
 
-import { displayList, displayEdit } from "./display.js";
-import {findCurrentProj, sortByDate, sortByPriority, addToList, completeItem, updateListItem, newProj, projects} from "./index.js"
+import { displayEdit } from "./display.js";
+import {sortByDate, sortByPriority, addToList, completeItem, updateListItem, newProj} from "./index.js"
 
 
 
@@ -77,18 +77,9 @@ function closeModal(){
         about.style.display = "none";
 }
 
-
-
-
-
-
-
-
-
-
 function toggleItemForm(){
     disableEdit()
-    let newItemSection = document.getElementById('new-item');
+
     let add = document.getElementById('add');
     let form = document.getElementById('newItemForm');
 
@@ -97,23 +88,8 @@ function toggleItemForm(){
 }
 
 function toggleProjForm(){
-    
     let newProjSection = document.getElementById('projectForm');
-    let add = document.getElementById('addProj');
-
     newProjSection.classList.toggle('form-hide');
-
-}
-
-
-function addItemTransition(){
-    let newItem = document.getElementById('new-item');
-    let title = document.getElementById('add');
-    newItem.removeChild(title);
-
-    form = document.createElement('form');
-    form.innerHTML= "<input type= 'text' id='listItemNew' name='listItemNew'>";
-    newItem.appendChild(form);
 
 }
 
@@ -130,16 +106,6 @@ function enableEdit(){
         content[i].style = 'pointer-events : all';
     }
 }
-
-function cancelEdit(){
-    let form = document.getElementById('editItemForm');
-    let project = findCurrentProj()
-    form.stopPropagation();
-    document.body.addEventListener('click', () => displayList(project))
-
-    
-}
-
 
 
 export  {btnControl, listListener, editListener, disableEdit}

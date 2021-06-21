@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/rypmaloney/clean-to-do#readme",
   "devDependencies": {
+    "eslint": "^7.29.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2"
   },

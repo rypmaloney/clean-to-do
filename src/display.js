@@ -11,7 +11,7 @@ function displayProjects(){
         projectsList.appendChild(projItem);
         projItem.setAttribute('data', i);
 
-        if (projects[i].current) {projItem.setAttribute('class', 'current-project project')};
+        if (projects[i].current) {projItem.setAttribute('class', 'current-project project')}
 
         let name = document.createElement('h3');
         name.textContent = `${projects[i].name}`;
@@ -35,7 +35,7 @@ function displayProjects(){
                 addItem.classList.remove('hide');
             }
     }
-};
+}
 
 
 
@@ -75,12 +75,13 @@ function displayList(project) {
             listItem.setAttribute('class', 'list-item');
             listItem.setAttribute('data-name', i);
             list.insertBefore(listItem, addItem);
-            let checkBoxMark = ' ';
+            let checkBoxMark = ' '
+
 
             if (listArray[i].complete == true){
                 listItem.setAttribute('class', 'complete list-item')
                 checkBoxMark = "<span style ='font-size: 18px; margin-left: 3px; pointer-events: none;'>&#10004;</span>"
-            };
+            }
 
 
 
@@ -88,6 +89,8 @@ function displayList(project) {
                 box.setAttribute('class', 'checkbox');
                 box.setAttribute('data', i);
                 listItem.appendChild(box);
+                box.innerHTML = checkBoxMark;
+                
 
                 let cont = document.createElement('p');
                 cont.setAttribute('class', 'listContent');

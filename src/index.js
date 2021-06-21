@@ -1,5 +1,5 @@
 import {btnControl} from './btnControl.js';
-import { dateToNumber, todaysDateNumber} from './utility.js';
+import { dateToNumber} from './utility.js';
 import { formatDistanceToNow, isToday, isThisWeek} from 'date-fns';
 import {displayProjects, displayList} from './display.js'
 console.log('if you see me, everything is A O K')
@@ -92,7 +92,7 @@ const createProject = (name, description) => {
 
 function populateToday(){
     projects[1].list = []
-    let today = todaysDateNumber() //ymd
+
     for (let i =3; i < projects.length; i++){
 
             for (let j = 0; j < projects[i].list.length; j++){
@@ -114,7 +114,7 @@ function populateToday(){
 
 function populateThisWeek(){
      projects[2].list = [];
-     let today = todaysDateNumber() //ymd
+
      for (let i =3; i < projects.length; i++){
              for (let j = 0; j < projects[i].list.length; j++){
 
@@ -182,7 +182,7 @@ function addNewDo(currentProject, name, priority, date){
         timeUntil = ''
     } else {
      timeUntil = `due in ${formatDateUntil(date)}`
-    };
+    }
     
     let sortablep = 2;
     if(priority == 'high'){
@@ -237,7 +237,7 @@ function updateListItem(e){
         timeUntil = ''
     } else {
      timeUntil = `due in ${formatDateUntil(date)}`
-    };
+    }
    
     let sortablep = 2;
     if(priority == 'high'){
