@@ -9,5 +9,5 @@ This is project is a to-do list web app with a clean interface. You create and o
 
 I'm most proud of the list item editing functionality. I was trying to emulate the Google notes app. Instead of opening a form to reenter the list information, you click on the item itself, and the form input is styled to leave the impression you are editing the item directly. 
 
-[Live Preivew](https://rawcdn.githack.com/rypmaloney/clean-to-do/45446594dc6862e74e5780003bf8b4d117eabb4b/dist/index.html)
+[Live Preivew](https://rawcdn.githack.com/rypmaloney/clean-to-do/fe1819bf044a7d857c1ad009d8b282233b192256/dist/index.html)
 
